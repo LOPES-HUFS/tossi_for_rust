@@ -9,7 +9,7 @@ fn main() {
         .read_line(&mut sentence)
         .expect("줄을 읽는데 실패했습니다.");
 
-    let raw = sentence.trim();
+    let words: Vec<&str> = sentence.split_whitespace().collect();
 
-    println!("콘솔에서 입력한 값: {}", raw.to_string());
+    println!("콘솔에서 입력한 값: {:?}", words);
 }
