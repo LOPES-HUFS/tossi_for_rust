@@ -3,6 +3,7 @@ fn main() {
     println!("{:?}", join_phonemes('ㅎ','ㅕ','ㄴ'));
 }
 
+// 초,중,종성을 하나의 글자로 합쳐주는 함수
 fn join_phonemes(begin: char, middle: char, end: char) -> char {
     // 초성, 중성, 종성 배열 정의
     let begins: [char; 19] = ['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];    
@@ -19,7 +20,7 @@ fn join_phonemes(begin: char, middle: char, end: char) -> char {
     return output
 }
 
-    // 한글자를 초,중,종성으로 구분하는 코드
+// 한글자를 초,중,종성으로 구분하는 코드
 fn split_phonemes(word: char, begin: bool, middle: bool, end: bool) -> [char; 3] { 
     // 초성, 중성, 종성 배열 정의
     let begins: [char; 19] = ['ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];    
