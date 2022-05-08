@@ -15,4 +15,4 @@ fn main() {
         println!("{:?}",splited);
         println!("{:?}", hangeul::join_phonemes(splited));
     }
-    
+}
