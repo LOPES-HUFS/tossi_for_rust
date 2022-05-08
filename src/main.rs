@@ -1,15 +1,18 @@
 use std::io;
 
 fn main() {
-    tossi_for_rust::hello();
-
-    let mut sentence = String::new();
-
+    println!("단어를 입력해주세요.");
+    let mut input = String::new();
     io::stdin()
-        .read_line(&mut sentence)
+        .read_line(&mut input)
         .expect("줄을 읽는데 실패했습니다.");
 
-    let words: Vec<&str> = sentence.split_whitespace().collect();
+    let word = input.trim();
 
-    println!("콘솔에서 입력한 값: {:?}", words);
-}
+    for c in word.chars() {
+        println!("{}",c);
+        let splited = hangeul::split_phonemes(c);
+        println!("{:?}",splited);
+        println!("{:?}", hangeul::join_phonemes(splited));
+    }
+    
