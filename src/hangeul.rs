@@ -9,6 +9,16 @@ fn main() {
     println!("{:?}", join_phonemes('ㅎ','ㅕ','ㄴ'));
 }
 
+// 한글인지 체크하는 함수
+fn is_hangeul(word: char) -> bool {
+    return '가' <= word && word <= '힣';
+}
+
+// 자음인지 체크하는 함수
+fn is_consonant(word: char) -> bool {
+    return 'ㄱ' <= word && word <= 'ㅎ';
+}
+
 // 초,중,종성을 하나의 글자로 합쳐주는 함수
 fn join_phonemes(begin: char, middle: char, end: char) -> char {
     // 파라미터로 받은 초,중,종성 인덱스 추출
@@ -50,9 +60,4 @@ fn split_phonemes(word: char, begin: bool, middle: bool, end: bool) -> [char; 3]
     }
     //초,중,종성이 배열로 묶여서 전달
     return phonemes
-}
-
-// 한글단어인지를 체크하는 함수
-fn is_hangeul(word: char) -> bool {
-    return '가' <= word && word <= '힣';
 }
