@@ -48,7 +48,7 @@ pub fn split_phonemes(word: char) -> [char; 3] {
     phonemes[1] = MIDDLES[idx_middle];
     //종성은 있는 경우에만 계산
     if (((unicode-0xAC00)%(21*28))%28) != 0 {
-        let idx_end: usize = (offset%21) as usize;
+        let idx_end: usize = (offset%28) as usize;
         phonemes[2] = ENDS[idx_end];
     }
     //초,중,종성이 배열로 묶여서 전달
