@@ -63,3 +63,20 @@ pub fn split_phonemes(word: char) -> [char; 3] {
     //초,중,종성이 배열로 묶여서 전달
     return phonemes;
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn _is_hangeul() {
+        let temp = '똠';
+        assert_eq!(true, is_hangeul(temp));
+
+        let temp = 'a';
+        assert_eq!(false, is_hangeul(temp));
+
+        let temp = '😀';
+        assert_eq!(false, is_hangeul(temp));
+    }
+}
