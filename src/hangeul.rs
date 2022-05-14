@@ -14,14 +14,13 @@ static FINAL: [char; 28] = [
 
 /// ### 한글인지 체크하는 함수
 ///
-/// 사용법은 tests 모듈, /tests/hangeul.rs 참고
+/// 사용법은 아래 `_is_hangeul()` 참고
 fn is_hangeul(word: char) -> bool {
     return '가' <= word && word <= '힣';
 }
 
 /// 자음인지 체크하는 함수
 ///
-/// 사용법은 tests 모듈, /tests/hangeul.rs 참고
 
 fn is_consonant(word: char) -> bool {
     return 'ㄱ' <= word && word <= 'ㅎ';
