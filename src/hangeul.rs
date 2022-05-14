@@ -15,6 +15,10 @@ fn is_consonant(word: char) -> bool {
 
 // 초,중,종성을 하나의 글자로 합쳐주는 함수
 pub fn join_phonemes(word: [char; 3]) -> char {
+    //한글이 아닌 경우 그대로 출력
+    if !is_consonant(word[0])  {
+        return word[0]
+    }
     // 파라미터로 받은 초,중,종성 인덱스 추출
     let idx_begin = INITIAL.iter().position(|&x| x == word[0]).unwrap();
     let idx_middle = MEDIAL.iter().position(|&x| x == word[1]).unwrap();
@@ -33,6 +37,7 @@ pub fn split_phonemes(word: char) -> [char; 3] {
     // 받은 문자가 한글인지 확인, 한글이 아닐 경우 공백으로 출력
     if !is_hangeul(word) {
         println!("The word is not hangeul");
+        phonemes[0] = word;
         return phonemes
     }
     //'가'와의 차이값 계산
