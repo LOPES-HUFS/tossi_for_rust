@@ -55,6 +55,7 @@ pub fn split_phonemes(word: char) -> [char; 3] {
     // 받은 문자가 한글인지 확인, 한글이 아닐 경우 공백으로 출력
     if !is_hangeul(word) {
         println!("The word is not hangeul");
+        phonemes[0] = word;
         return phonemes;
     }
     //'가'와의 차이값 계산
