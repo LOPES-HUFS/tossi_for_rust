@@ -13,26 +13,22 @@ static FINAL: [char; 28] = [
 ];
 
 /// ### 한글인지 체크하는 함수
-///
 /// 사용법은 아래 `_is_hangeul()` 참고
 fn is_hangeul(word: char) -> bool {
     return '가' <= word && word <= '힣';
 }
 
 /// 자음인지 체크하는 함수
-///
-
 fn is_consonant(word: char) -> bool {
     return 'ㄱ' <= word && word <= 'ㅎ';
 }
 
 /// ## 초,중,종성을 하나의 글자로 합쳐주는 함수
-///
 /// 사용법은 tests 모듈, /tests/hangeul.rs 참고
 pub fn join_phonemes(word: [char; 3]) -> char {
     //한글이 아닌 경우 그대로 출력
-    if !is_consonant(word[0])  {
-        return word[0]
+    if !is_consonant(word[0]) {
+        return word[0];
     }
     // 파라미터로 받은 초,중,종성 인덱스 추출
     let idx_begin = INITIAL.iter().position(|&x| x == word[0]).unwrap();
@@ -46,9 +42,7 @@ pub fn join_phonemes(word: [char; 3]) -> char {
 }
 
 /// ## 한글자를 초,중,종성으로 구분하는 함수
-///
 /// 사용법은 tests 모듈, /tests/hangeul.rs 참고
-
 pub fn split_phonemes(word: char) -> [char; 3] {
     // 조,중,종성을 담을 배열 정의
     let mut phonemes: [char; 3] = [' '; 3];

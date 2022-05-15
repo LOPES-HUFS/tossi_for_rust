@@ -1,4 +1,5 @@
 use std::io;
+mod hangeul;
 
 fn main() {
     println!("단어를 입력해주세요.");
@@ -10,9 +11,9 @@ fn main() {
     let word = input.trim();
 
     for c in word.chars() {
-        println!("{}",c);
+        println!("{}", c);
         let splited = hangeul::split_phonemes(c);
-        println!("{:?}",splited);
+        println!("{:?}", splited);
         println!("{:?}", hangeul::join_phonemes(splited));
     }
 }
