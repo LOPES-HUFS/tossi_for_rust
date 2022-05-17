@@ -32,10 +32,21 @@ fn filter_only_significant(word: &str) -> Vec<char> {
         else if is_hangeul(c) {
             output.push(c);
         }
+        else if is_digits(c) {
+            let num = change_int_char(c);
+            output.push(num);
+        }
     }
     return output;
 }
 
+//숫자인지 아닌지 확인하는 함수
+fn is_digits(int: char) -> bool {
+    return '0' <= int && int <= '9';
+}
+
 //숫자를 한글발음으로 변환해주는 함수
-//fn change_int_char(int: char) -> char {
-//}
+fn change_int_char(int: char) -> char {
+    let idx: usize = int as usize;
+    return DIGITS[idx - 48];
+}
