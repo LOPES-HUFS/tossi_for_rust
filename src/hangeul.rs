@@ -14,7 +14,7 @@ static FINAL: [char; 28] = [
 
 /// ### 한글인지 체크하는 함수
 /// 사용법은 아래 `_is_hangeul()` 참고
-fn is_hangeul(word: char) -> bool {
+pub fn is_hangeul(word: char) -> bool {
     return '가' <= word && word <= '힣';
 }
 

@@ -1,5 +1,6 @@
 use std::io;
 mod hangeul;
+mod filter;
 
 fn main() {
     println!("단어를 입력해주세요.");
@@ -10,10 +11,8 @@ fn main() {
 
     let word = input.trim();
 
-    for c in word.chars() {
-        println!("{}", c);
-        let splited = hangeul::split_phonemes(c);
-        println!("{:?}", splited);
-        println!("{:?}", hangeul::join_phonemes(splited));
-    }
+    let output = filter::find_last_letter(word);
+    let splited = hangeul::split_phonemes(output);
+    println!("{:?}", splited);
+    println!("{:?}", hangeul::join_phonemes(splited));
 }
