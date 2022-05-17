@@ -5,7 +5,12 @@ static DIGITS: [char; 10] = ['영','일','이','삼','사','오','육','칠','�
 //단어에서 마지막 글자를 찾아주는 함수
 pub fn find_last_letter(word: &str) -> char {
     let filtered = filter_only_significant(word);
-    return filtered[filtered.len()-1];
+    if filtered.len() > 0 {
+        return filtered[filtered.len()-1];
+    }
+    else {
+        return ' ';
+    }
 }
 
 //단어에서 불필요한 요소 제거하는 함수
@@ -30,3 +35,7 @@ fn filter_only_significant(word: &str) -> Vec<char> {
     }
     return output;
 }
+
+//숫자를 한글발음으로 변환해주는 함수
+//fn change_int_char(int: char) -> char {
+//}
