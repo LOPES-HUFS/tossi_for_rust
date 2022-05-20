@@ -1,6 +1,6 @@
 use crate::hangeul::is_hangeul;
 
-static DIGITS: [char; 10] = ['영','일','이','삼','사','오','육','칠','팔','구'];
+const DIGITS: [char; 10] = ['영','일','이','삼','사','오','육','칠','팔','구'];
 
 //단어에서 마지막 글자를 찾아주는 함수
 pub fn find_last_letter(word: &str) -> char {
