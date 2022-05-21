@@ -1,10 +1,6 @@
 mod filter;
 mod hangeul;
 
-pub fn hello() {
-    println!("Hello, world!");
-}
-
 // hangeul 모듈
 pub fn join_phonemes(word: [char; 3]) -> char {
     hangeul::join_phonemes(word)
