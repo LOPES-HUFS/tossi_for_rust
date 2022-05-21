@@ -1,5 +1,7 @@
 use library::find_last_letter;
 
+#[test]
+
 fn _find_last_letter() {
     let temp = "넥슨(코리아)";
     let result = '슨';
