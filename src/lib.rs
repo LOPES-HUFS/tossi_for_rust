@@ -18,3 +18,8 @@ pub fn split_phonemes(word: char) -> [char; 3] {
 pub fn find_last_letter(word: &str) -> char {
     filter::find_last_letter(word)
 }
+
+// 테스트
+pub fn postfix(word: &str, tossi: &str) -> String {
+    format!("{}{}", word, tossi)
+}
