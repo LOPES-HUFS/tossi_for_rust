@@ -1,4 +1,6 @@
 use std::io;
+
+use library::postfix;
 mod filter;
 mod hangeul;
 
@@ -16,4 +18,6 @@ fn main() {
     let splited = hangeul::split_phonemes(output);
     println!("{:?}", splited);
     println!("{:?}", hangeul::join_phonemes(splited));
+    // 테스트
+    println!("{:?}", postfix("집", "으로"));
 }

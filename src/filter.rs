@@ -33,8 +33,8 @@ use crate::hangeul::is_hangeul;
 
 const DIGITS: [char; 10] = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
 
-//단어에서 마지막 글자를 찾아주는 함수
-// ' '을 도출한 경우 영어 포함 외국어이다. -> 병기로 연결
+/// ## 단어에서 마지막 글자를 찾아주는 함수
+/// ' '을 도출한 경우 영어 포함 외국어이다. -> 병기로 연결
 pub fn find_last_letter(word: &str) -> char {
     let filtered = filter_only_significant(word);
     if filtered.len() > 0 {
@@ -44,7 +44,7 @@ pub fn find_last_letter(word: &str) -> char {
     }
 }
 
-//단어에서 불필요한 요소 제거하는 함수
+/// ##단어에서 불필요한 요소 제거하는 함수
 fn filter_only_significant(word: &str) -> Vec<char> {
     let mut output: Vec<char> = Vec::new();
     let mut bracket: bool = false;
@@ -68,15 +68,55 @@ fn filter_only_significant(word: &str) -> Vec<char> {
     return output;
 }
 
-//숫자인지 아닌지 확인하는 함수
+/// ## 숫자를 한글발음으로 변환해주는 함수
 fn is_digits(num: char) -> bool {
     return '0' <= num && num <= '9';
 }
 
-//숫자를 한글발음으로 변환해주는 함수
+/// ## 숫자를 한글발음으로 변환해주는 함수
 fn change_int_char(num: char) -> char {
     let idx: usize = num as usize;
     return DIGITS[idx - 48];
 }
 
 //외래어인지 아닌지 확인하는 함수
+
+/// 비 공개 함수틑 테스트
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn _filter_only_significant() {
+        let temp = "넥슨(코리아)";
+        let result = vec!['넥', '슨'];
+        assert_eq!(result, filter_only_significant(temp));
+    }
+
+    #[test]
+    fn _change_int_char() {
+        let temp = '5';
+        assert_eq!('오', change_int_char(temp));
+
+        let temp = '0';
+        assert_eq!('영', change_int_char(temp));
+    }
+
+    #[test]
+    fn _is_digits() {
+        let temp = '5';
+        assert_eq!(true, is_digits(temp));
+
+        let temp = '일';
+        assert_eq!(false, is_digits(temp));
+
+        let temp = '영';
+        assert_eq!(false, is_digits(temp));
+
+        let temp = ' ';
+        assert_eq!(false, is_digits(temp));
+
+        let temp = '😀';
+        assert_eq!(false, is_digits(temp));
+    }
+}
