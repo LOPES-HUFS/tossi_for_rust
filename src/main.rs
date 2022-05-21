@@ -12,6 +12,7 @@ fn main() {
     let word = input.trim();
 
     let output = filter::find_last_letter(word);
+    println!("{:?}", output);
     let splited = hangeul::split_phonemes(output);
     println!("{:?}", splited);
     println!("{:?}", hangeul::join_phonemes(splited));
