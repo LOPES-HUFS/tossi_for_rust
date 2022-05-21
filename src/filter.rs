@@ -67,13 +67,53 @@ fn filter_only_significant(word: &str) -> Vec<char> {
     return output;
 }
 
-//숫자인지 아닌지 확인하는 함수
+/// ## 숫자인지 아닌지 확인하는 함수
 fn is_digits(int: char) -> bool {
     return '0' <= int && int <= '9';
 }
 
-//숫자를 한글발음으로 변환해주는 함수
+/// ## 숫자를 한글발음으로 변환해주는 함수
 fn change_int_char(int: char) -> char {
     let idx: usize = int as usize;
     return DIGITS[idx - 48];
+}
+
+/// 비 공개 함수를 테스트합니다.
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn _filter_only_significant() {
+        let temp = "넥슨(코리아)";
+        let result = vec!['넥','슨'];
+        assert_eq!(result, filter_only_significant(temp));
+    }
+
+    #[test]
+    fn _change_int_char() {
+        let temp = '5';
+        assert_eq!('오', change_int_char(temp));
+
+        let temp = '0';
+        assert_eq!('영', change_int_char(temp));
+    }
+
+    #[test]
+    fn _is_digits() {
+        let temp = '5';
+        assert_eq!(true, is_digits(temp));
+
+        let temp = '일';
+        assert_eq!(false, is_digits(temp));
+
+        let temp = '영';
+        assert_eq!(false, is_digits(temp));
+
+        let temp = ' ';
+        assert_eq!(false, is_digits(temp));
+
+        let temp = '😀';
+        assert_eq!(false, is_digits(temp));
+    }
 }
