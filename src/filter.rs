@@ -89,7 +89,7 @@ mod tests {
     #[test]
     fn _filter_only_significant() {
         let temp = "넥슨(코리아)";
-        let result = vec!['넥','슨'];
+        let result = vec!['넥', '슨'];
         assert_eq!(result, filter_only_significant(temp));
     }
 
