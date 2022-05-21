@@ -22,8 +22,6 @@ fn _join_phonemes() {
     let result = '똠';
     assert_eq!(result, join_phonemes(temp));
 
-
-
     let temp: [char; 3] = ['ㄸ', 'ㅗ', 'ㅁ'];
     let result = '똠';
     assert_eq!(result, join_phonemes(temp));

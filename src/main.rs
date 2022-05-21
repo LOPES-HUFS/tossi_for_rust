@@ -1,6 +1,6 @@
 use std::io;
-mod hangeul;
 mod filter;
+mod hangeul;
 
 fn main() {
     println!("단어를 입력해주세요.");
