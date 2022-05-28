@@ -1,5 +1,8 @@
 mod filter;
 mod hangeul;
+mod identify;
+
+use identify::Tossi;
 
 // hangeul 모듈
 pub fn join_phonemes(word: [char; 3]) -> char {
@@ -17,5 +20,8 @@ pub fn find_last_letter(word: &str) -> char {
 
 // 테스트
 pub fn postfix(word: &str, tossi: &str) -> String {
+    let temp = Tossi::new(tossi);
+    println!("입력된 토시: {:?}", temp.modified);
+    println!("토시 종류: {:?}", temp.kind);
     format!("{}{}", word, tossi)
 }
