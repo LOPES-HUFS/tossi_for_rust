@@ -79,7 +79,6 @@ fn change_int_char(num: char) -> char {
     return DIGITS[idx - 48];
 }
 
-//외래어인지 아닌지 확인하는 함수
 
 /// 비 공개 함수틑 테스트
 #[cfg(test)]
