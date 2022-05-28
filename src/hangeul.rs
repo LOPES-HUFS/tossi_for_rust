@@ -46,11 +46,19 @@ fn is_consonant(word: char) -> bool {
     return 'ㄱ' <= word && word <= 'ㅎ';
 }
 
+/// 모음인지 체크하는 함수
+// fn is_medial(word: char) -> bool {
+//     return 'ㅏ' <= word && word <= 'ㅣ';
+// }
+
 /// ## 초,중,종성을 하나의 글자로 합쳐주는 함수
 /// 이 함수는 기본적으로 입력된 것이 종성까지 가지고 있는다고 가정하고 작성하였다.
 /// 사용하기 위해서는 종성이 없는 경우에도 다음과 같이 종성 자리에 ` `를 넣어야 한다.
 /// ```rust
-/// ['ㄱ', 'ㅏ', ' ']
+///    let temp = ['ㄱ', 'ㅏ', 'ㄴ'];
+///    assert_eq!('간', library::join_phonemes(temp));
+///    let temp = ['ㄱ', 'ㅏ', ' '];
+///    assert_eq!('가', library::join_phonemes(temp));
 /// ```
 /// 사용법은 tests 모듈, /tests/hangeul.rs 참고
 pub fn join_phonemes(word: [char; 3]) -> char {
