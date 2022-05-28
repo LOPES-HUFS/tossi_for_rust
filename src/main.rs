@@ -18,10 +18,11 @@ fn main() {
     let splited = hangeul::split_phonemes(output);
     println!("{:?}", splited);
     println!("{:?}", hangeul::join_phonemes(splited));
+    println!("{:?}", hangeul::include_final('크'));
     // 테스트
     println!("{:?}", postfix("집", "으로"));
     println!("{:?}", postfix("집", "로"));
     println!("{:?}", postfix("집", "(으)로"));
     println!("{:?}", postfix("집", "은"));
-    println!("{:?}", postfix("집", ""));
+    println!("{:?}", postfix("집", "는"));
 }
