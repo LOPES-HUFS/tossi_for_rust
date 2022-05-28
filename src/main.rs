@@ -23,5 +23,5 @@ fn main() {
     println!("{:?}", postfix("집", "로"));
     println!("{:?}", postfix("집", "(으)로"));
     println!("{:?}", postfix("집", "은"));
-    println!("{:?}", postfix("집", "는"));
+    println!("{:?}", postfix("집", ""));
 }
