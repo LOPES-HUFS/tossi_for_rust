@@ -22,7 +22,7 @@ fn main() {
     println!("{:?}", postfix("집", "으로"));
     println!("{:?}", postfix("test", "로"));
     println!("{:?}", postfix("집", "(으)로"));
-    println!("{:?}", postfix("닭", "이다"));
-    println!("{:?}", postfix("나뭇가지(만렙)", "은"));
+    println!("{:?}", postfix("test", "다"));
+    println!("{:?}", postfix("나뭇가지(만렙)", "이다"));
     println!("{:?}", postfix("집", "는"));
 }

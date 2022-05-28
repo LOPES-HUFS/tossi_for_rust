@@ -5,17 +5,16 @@
 //! - 외국어가 앞 단어로 오는 경우 병기 '(은)는'이 출력됩니다.
 //!
 
-use crate::find_last_letter;
-use crate::split_phonemes;
+use crate::{find_last_letter, is_hangeul, include_final};
 
 pub fn change(word: &str) -> String {
     let last = find_last_letter(word);
-    let last = split_phonemes(last);
-    if last[1] == ' ' && last[2] == ' ' {
-        "(은)는".to_string()
-    } else if  last[2] == ' ' {
-        "는".to_string()
-    } else {
+    if !is_hangeul(last) {
+        return "(은)는".to_string()
+    }
+    if  include_final(last) {
         "은".to_string()
+    } else {
+        "는".to_string()
     }
 }
