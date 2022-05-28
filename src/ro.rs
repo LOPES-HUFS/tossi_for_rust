@@ -10,12 +10,12 @@ use crate::find_last_letter;
 use crate::split_phonemes;
 
 pub fn change(word: &str) -> String {
-    let last_letter = find_last_letter(word);
-    let last_phonemes = split_phonemes(last_letter);
+    let last = find_last_letter(word);
+    let last = split_phonemes(last);
 
-    if last_phonemes[2] == 'ㄹ' {
+    if last[2] == 'ㄹ' {
         "로".to_string()
-    } else if last_phonemes[2] == ' ' {
+    } else if last[2] == ' ' {
         "로".to_string()
     } else {
         "으로".to_string()
