@@ -20,4 +20,6 @@ fn main() {
     println!("{:?}", hangeul::join_phonemes(splited));
     // 테스트
     println!("{:?}", postfix("집", "으로"));
+    println!("{:?}", postfix("집", "로"));
+    println!("{:?}", postfix("집", "(으)로"));
 }

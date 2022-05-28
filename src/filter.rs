@@ -45,7 +45,7 @@ pub fn find_last_letter(word: &str) -> char {
 }
 
 /// ##단어에서 불필요한 요소 제거하는 함수
-fn filter_only_significant(word: &str) -> Vec<char> {
+pub fn filter_only_significant(word: &str) -> Vec<char> {
     let mut output: Vec<char> = Vec::new();
     let mut bracket: bool = false;
     for c in word.chars() {
