@@ -7,16 +7,14 @@
 //! https://github.com/LOPES-HUFS/tossi_for_rust/wiki/'~-로---~-으로'에-대하여
 //!
 
-use crate::{find_last_letter, is_hangeul, include_final, split_phonemes};
+use crate::guess_final;
 
 pub fn change(word: &str) -> String {
-    let last = find_last_letter(word);
-    let splited = split_phonemes(last);
-    if !is_hangeul(last) {
+    let fin = guess_final(word);
+    if fin == 'N' {
         return "(으)로".to_string()
     }
-
-    if splited[2] == 'ㄹ' || !include_final(last) {
+    if fin == ' ' || fin == 'ㄹ' {
         "로".to_string()
     } else {
         "으로".to_string()

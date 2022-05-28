@@ -4,16 +4,16 @@
 //! - '으로'는 ‘ㄹ’을 제외한 받침 있는 체언 뒤에 붙습니다.
 //!
 
-use crate::{find_last_letter, is_hangeul, include_final};
+use crate::guess_final;
 
 pub fn change(word: &str) -> String {
-    let last = find_last_letter(word);
-    if !is_hangeul(last) {
+    let fin = guess_final(word);
+    if fin == 'N' {
         return "(이)다".to_string()
     }
-    if  include_final(last) {
-        "이다".to_string()
-    } else {
+    if fin == ' ' {
         "다".to_string()
+    } else {
+        "이다".to_string()
     }
 }

@@ -108,16 +108,6 @@ pub fn split_phonemes(word: char) -> [char; 3] {
     return phonemes;
 }
 
-
-// ## 종성이 있는지 없는지 확인해주는 함수
-// 이 함수는 특정 글자가 종성이 있는지 없는지만을 확입합니다.
-// 종성이 있다면 true, 없다면 false를 출력합니다.
-#[allow(dead_code)]
-pub fn include_final(word: char) -> bool {
-    let splited = split_phonemes(word);
-    return splited[2] != ' ';
-}
-
 /// 비 공개 함수를 테스트합니다.
 #[cfg(test)]
 mod tests {
