@@ -33,7 +33,6 @@ pub enum TossiKind {
 /// 사용자가 입력한 토시를 변환해서 저장하고,
 /// 변환한 값을 토대로 어떤 종류인지 분류한 다음 분류한 결과를 저장한다.
 /// 사용법은 아래와 같다.
-/// 현재는 분류 이름을 반환하고 있지만, 나중에는 열거자를 반환하게 만들 예정이다.
 ///
 /// ```rust
 /// let test_tossi = "으로";
@@ -65,7 +64,6 @@ impl Tossi {
 
 /// ## 한 글자로 된 토시를 분류하는 함수
 /// 한 글자로 된 토시가 들어오면 이를 종류 별로 분류하는 함수
-/// 현재는 분류 이름을 반환하고 있지만, 나중에는 열거자를 반환하게 만들 예정이다.
 fn one_letter(element: char) -> TossiKind {
     let result = match element {
         '은' | '는' => TossiKind::Neun,
@@ -78,7 +76,6 @@ fn one_letter(element: char) -> TossiKind {
 
 /// ## 두 글자로 된 토시를 분류하는 함수
 /// 두 글자로 된 토시가 들어오면 이를 종류 별로 분류하는 함수
-/// 현재는 분류 이름을 반환하고 있지만, 나중에는 열거자를 반환하게 만들 예정이다.
 fn two_letters(elements: &Vec<char>) -> TossiKind {
     let result = match (elements[0], elements[1]) {
         ('으', '로') => TossiKind::Ro,
