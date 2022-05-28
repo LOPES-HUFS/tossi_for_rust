@@ -57,7 +57,6 @@ fn _join_phonemes() {
     let temp = ['ㄱ', 'a', ' '];
     let result = 'ㄱ';
     assert_eq!(result, join_phonemes(temp));
-
 }
 
 // def test_join_phonemes():
