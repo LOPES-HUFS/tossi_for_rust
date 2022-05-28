@@ -1,8 +1,7 @@
 mod filter;
 mod hangeul;
 mod identify;
-
-mod ro;
+mod particle;
 
 use identify::Tossi;
 
@@ -29,9 +28,10 @@ pub fn postfix(word: &str, tossi: &str) -> String {
     );
 
     let result = match temp.kind {
-        identify::TossiKind::Neun => " ".to_string(),
-        identify::TossiKind::Ka => " ".to_string(),
-        identify::TossiKind::Ro => ro::change(&word),
+        identify::TossiKind::Neun => particle::neun::change(&word),
+        identify::TossiKind::Ka => particle::ka::change(&word),
+        identify::TossiKind::Ro => particle::ro::change(&word),
+        identify::TossiKind::Ida => " ".to_string(),
         identify::TossiKind::None => " ".to_string(),
     };
 
