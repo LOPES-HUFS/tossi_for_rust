@@ -75,7 +75,7 @@ pub fn join_phonemes(word: [char; 3]) -> char {
 pub fn split_phonemes(word: char) -> [char; 3] {
     // 조,중,종성을 담을 배열 정의
     let mut phonemes: [char; 3] = [' '; 3];
-    // 받은 문자가 한글인지 확인, 한글이 아닐 경우 공백으로 출력
+    // 받은 문자가 한글인지 확인, 한글이 아닐 경우 배열 첫번째 요소에 그대로 출력
     if !is_hangeul(word) {
         println!("The word is not hangeul");
         phonemes[0] = word;
