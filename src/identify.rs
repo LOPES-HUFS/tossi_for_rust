@@ -21,10 +21,13 @@
 
 use crate::filter::filter_only_significant;
 
-// enum TossiKind {
-//     Neun,
-//     Ka,
-// }
+#[derive(Debug)]
+pub enum TossiKind {
+     Neun,
+     Ka,
+     Ro,
+     None
+}
 
 /// ## 토시 구조체
 /// 사용자가 입력한 토시를 변환해서 저장하고,
@@ -41,17 +44,17 @@ use crate::filter::filter_only_significant;
 
 pub struct Tossi {
     pub modified: Vec<char>,
-    pub kind: String,
+    pub kind: TossiKind,
 }
 
 impl Tossi {
     pub fn new(raw: &str) -> Self {
-        let temp_modified = modify(raw);
+        let temp_modified = filter_only_significant(raw);
         // 앞에서 변환 것을 토대로 글자 수에 따라 조사 종류를 찾는다.
         let temp_kind = match temp_modified.len() {
             1 => one_letter(temp_modified[0]),
             2 => two_letters(&temp_modified),
-            _ => "Not Available".to_string(),
+            _ => TossiKind::None,
         };
         Self {
             modified: temp_modified,
@@ -60,19 +63,15 @@ impl Tossi {
     }
 }
 
-fn modify(raw: &str) -> Vec<char> {
-    filter_only_significant(&raw)
-}
-
 /// ## 한 글자로 된 토시를 분류하는 함수
 /// 한 글자로 된 토시가 들어오면 이를 종류 별로 분류하는 함수
 /// 현재는 분류 이름을 반환하고 있지만, 나중에는 열거자를 반환하게 만들 예정이다.
-fn one_letter(element: char) -> String {
+fn one_letter(element: char) -> TossiKind {
     let result = match element {
-        '은' | '는' => "Neun".to_string(),
-        '이' | '가' => "ka".to_string(),
-        '로' => "ro".to_string(),
-        _ => "Not Available".to_string(),
+        '은' | '는' => TossiKind::Neun,
+        '이' | '가' => TossiKind::Ka,
+        '로' => TossiKind::Ro,
+        _ => TossiKind::None,
     };
     result
 }
@@ -80,10 +79,10 @@ fn one_letter(element: char) -> String {
 /// ## 두 글자로 된 토시를 분류하는 함수
 /// 두 글자로 된 토시가 들어오면 이를 종류 별로 분류하는 함수
 /// 현재는 분류 이름을 반환하고 있지만, 나중에는 열거자를 반환하게 만들 예정이다.
-fn two_letters(elements: &Vec<char>) -> String {
+fn two_letters(elements: &Vec<char>) -> TossiKind {
     let result = match (elements[0], elements[1]) {
-        ('으', '로') => "ro".to_string(),
-        (_, _) => "Not Available".to_string(),
+        ('으', '로') => TossiKind::Ro,
+        (_, _) => TossiKind::None,
     };
     result
 }
