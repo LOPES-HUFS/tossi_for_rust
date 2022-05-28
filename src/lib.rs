@@ -14,19 +14,14 @@ pub fn split_phonemes(word: char) -> [char; 3] {
     hangeul::split_phonemes(word)
 }
 
-pub fn is_hangeul(word: char) -> bool {
-    hangeul::is_hangeul(word)
-}
-
-pub fn include_final(word: char) -> bool {
-    hangeul::include_final(word)
-}
-
 // filter 모듈
 pub fn find_last_letter(word: &str) -> char {
     filter::find_last_letter(word)
 }
 
+pub fn guess_final(word: &str) -> char {
+    filter::guess_final(word)
+}
 // 테스트
 pub fn postfix(word: &str, tossi: &str) -> String {
     let temp = Tossi::new(tossi);

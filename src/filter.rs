@@ -1,5 +1,13 @@
 //! # 숫자와 기타 문자들을 처리해주는 모듈
 //!
+//! ## guess_final
+//! 종성만 찾아서 도출해주는 함수
+//! ```text
+//! ex) 류 -> ' '
+//! ex) 영 -> 'ㅇ'
+//! ex) K(한글이 아닌 경우) -> 'N'
+//! ```
+//!
 //! ## find_last_letter
 //! 단어에서 마지막 글자를 찾아주는 함수.
 //! 불필요한 요소를 삭제한 후 그 결과에서 마지막 글자를 반환한다.  
@@ -29,9 +37,21 @@
 //! ex) 5 -> 오  
 //! ```
 
-use crate::hangeul::is_hangeul;
+use crate::hangeul::{is_hangeul, split_phonemes};
 
 const DIGITS: [char; 10] = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
+
+// ## 종성만 찾아서 도출해주는 함수
+// 이 함수는 특정 글자의 종성만 도출합니다.
+pub fn guess_final(word: &str) -> char {
+    let filtered = find_last_letter(word);
+    if !is_hangeul(filtered) {
+        return 'N';
+    }
+    else{
+        return split_phonemes(filtered)[2];
+    }
+}
 
 /// ## 단어에서 마지막 글자를 찾아주는 함수
 /// ' '을 도출한 경우 영어 포함 외국어이다. -> 병기로 연결
