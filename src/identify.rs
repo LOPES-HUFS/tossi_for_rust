@@ -23,10 +23,11 @@ use crate::filter::filter_only_significant;
 
 #[derive(Debug)]
 pub enum TossiKind {
-    Neun,
-    Ka,
-    Ro,
-    None,
+     Neun,
+     Ka,
+     Ro,
+     Ida,
+     None
 }
 
 /// ## 토시 구조체
@@ -69,6 +70,7 @@ fn one_letter(element: char) -> TossiKind {
         '은' | '는' => TossiKind::Neun,
         '이' | '가' => TossiKind::Ka,
         '로' => TossiKind::Ro,
+        '다' => TossiKind::Ida,
         _ => TossiKind::None,
     };
     result
@@ -79,6 +81,7 @@ fn one_letter(element: char) -> TossiKind {
 fn two_letters(elements: &Vec<char>) -> TossiKind {
     let result = match (elements[0], elements[1]) {
         ('으', '로') => TossiKind::Ro,
+        ('이', '다') => TossiKind::Ida,
         (_, _) => TossiKind::None,
     };
     result

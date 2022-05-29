@@ -1,8 +1,7 @@
 mod filter;
 mod hangeul;
 mod identify;
-
-mod ro;
+mod particle;
 
 use identify::Tossi;
 
@@ -20,6 +19,9 @@ pub fn find_last_letter(word: &str) -> char {
     filter::find_last_letter(word)
 }
 
+pub fn guess_final(word: &str) -> char {
+    filter::guess_final(word)
+}
 // 테스트
 pub fn postfix(word: &str, tossi: &str) -> String {
     let temp = Tossi::new(tossi);
@@ -29,9 +31,10 @@ pub fn postfix(word: &str, tossi: &str) -> String {
     );
 
     let result = match temp.kind {
-        identify::TossiKind::Neun => " ".to_string(),
-        identify::TossiKind::Ka => " ".to_string(),
-        identify::TossiKind::Ro => ro::change(&word),
+        identify::TossiKind::Neun => particle::neun::change(&word),
+        identify::TossiKind::Ka => particle::ka::change(&word),
+        identify::TossiKind::Ro => particle::ro::change(&word),
+        identify::TossiKind::Ida => particle::ida::change(&word),
         identify::TossiKind::None => " ".to_string(),
     };
 

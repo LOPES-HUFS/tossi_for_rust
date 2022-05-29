@@ -85,7 +85,6 @@ pub fn split_phonemes(word: char) -> [char; 3] {
     let mut phonemes: [char; 3] = [' '; 3];
     // 받은 문자가 한글인지 확인, 한글이 아닐 경우 배열 첫번째 요소에 그대로 출력
     if !is_hangeul(word) {
-        println!("The word is not hangeul");
         phonemes[0] = word;
         return phonemes;
     }
