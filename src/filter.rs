@@ -43,9 +43,11 @@ const DIGITS: [char; 10] = ['영', '일', '이', '삼', '사', '오', '육', '�
 
 // ## 종성만 찾아서 도출해주는 함수
 // 이 함수는 특정 글자의 종성만 도출합니다.
+#[allow(dead_code)]
 pub fn guess_final(word: &str) -> char {
     let filtered = find_last_letter(word);
-    if !is_hangeul(filtered) {
+    // find_last_letter()은 한글이나 숫자가 없을 경우 ' '을 출력한다.
+    if filtered == ' ' {
         return 'N';
     } else {
         return split_phonemes(filtered)[2];
