@@ -10,7 +10,7 @@ use crate::guess_final;
 pub fn change(word: &str) -> String {
     let fin = guess_final(word);
     if fin == 'N' {
-        return "(이)가".to_string()
+        return "(이)가".to_string();
     }
     if fin == ' ' {
         "가".to_string()

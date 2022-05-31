@@ -23,11 +23,11 @@ use crate::filter::filter_only_significant;
 
 #[derive(Debug)]
 pub enum TossiKind {
-     Neun,
-     Ka,
-     Ro,
-     Ida,
-     None
+    Neun,
+    Ka,
+    Ro,
+    Ida,
+    None,
 }
 
 /// ## 토시 구조체

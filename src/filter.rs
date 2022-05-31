@@ -47,8 +47,7 @@ pub fn guess_final(word: &str) -> char {
     let filtered = find_last_letter(word);
     if !is_hangeul(filtered) {
         return 'N';
-    }
-    else{
+    } else {
         return split_phonemes(filtered)[2];
     }
 }
@@ -98,7 +97,6 @@ fn change_int_char(num: char) -> char {
     let idx: usize = num as usize;
     return DIGITS[idx - 48];
 }
-
 
 /// 비 공개 함수틑 테스트
 #[cfg(test)]

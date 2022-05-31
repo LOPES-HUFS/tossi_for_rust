@@ -12,7 +12,7 @@ use crate::guess_final;
 pub fn change(word: &str) -> String {
     let fin = guess_final(word);
     if fin == 'N' {
-        return "(으)로".to_string()
+        return "(으)로".to_string();
     }
     if fin == ' ' || fin == 'ㄹ' {
         "로".to_string()
