@@ -89,7 +89,9 @@ pub fn filter_only_significant(word: &str) -> Vec<char> {
     return output;
 }
 
-/// ## 숫자를 한글발음으로 변환해주는 함수
+/// ## 해당 문자가 숫자인지 아닌지 확인하는 함수
+/// 
+/// 입력된 문자가 숫자이면 `true`, 아니면 `false`를 반환합니다.
 fn is_digits(num: char) -> bool {
     return '0' <= num && num <= '9';
 }
