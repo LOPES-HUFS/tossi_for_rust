@@ -1,9 +1,9 @@
 mod filter;
 mod hangeul;
-mod identify;
+mod identifier;
 mod particle;
 
-use identify::Tossi;
+use identifier::Tossi;
 
 // hangeul 모듈
 pub fn join_phonemes(word: [char; 3]) -> char {
@@ -31,11 +31,11 @@ pub fn postfix(word: &str, tossi: &str) -> String {
     );
 
     let result = match temp.kind {
-        identify::TossiKind::Neun => particle::neun::change(&word),
-        identify::TossiKind::Ka => particle::ka::change(&word),
-        identify::TossiKind::Ro => particle::ro::change(&word),
-        identify::TossiKind::Ida => particle::ida::change(&word),
-        identify::TossiKind::None => " ".to_string(),
+        identifier::TossiKind::Neun => particle::neun::change(&word),
+        identifier::TossiKind::Ka => particle::ka::change(&word),
+        identifier::TossiKind::Ro => particle::ro::change(&word),
+        identifier::TossiKind::Ida => particle::ida::change(&word),
+        identifier::TossiKind::None => " ".to_string(),
     };
 
     let front = word.to_string();

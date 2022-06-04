@@ -21,8 +21,8 @@
 //! 기호인 경우 삭제하며, 괄호에 들어간 글자들도 삭제한다.  
 //! 숫자인 경우 숫자의 한글발음으로 변경해준다.  
 //! ```text
-//! ex) 넥슨(코리아) -> 넥슨  
-//! ex) 비타500 -> 비타오영영  
+//! ex) 넥슨(코리아) -> [넥,슨]  
+//! ex) 비타500 -> [비,타,오,영,영]  
 //! ```
 //!
 //! ## is_digits
@@ -47,7 +47,7 @@ const DIGITS: [char; 10] = ['영', '일', '이', '삼', '사', '오', '육', '�
 pub fn guess_final(word: &str) -> char {
     let filtered = find_last_letter(word);
     // find_last_letter()은 한글이나 숫자가 없을 경우 ' '을 출력한다.
-    if filtered == ' ' {
+    if filtered == 'N' {
         return 'N';
     } else {
         return split_phonemes(filtered)[2];
@@ -55,13 +55,13 @@ pub fn guess_final(word: &str) -> char {
 }
 
 /// ## 단어에서 마지막 글자를 찾아주는 함수
-/// ' '을 도출한 경우 영어 포함 외국어이다. -> 병기로 연결
+/// 'N'을 도출한 경우 영어 포함 외국어이다. -> 병기로 연결
 pub fn find_last_letter(word: &str) -> char {
     let filtered = filter_only_significant(word);
     if filtered.len() > 0 {
         return filtered[filtered.len() - 1];
     } else {
-        return ' ';
+        return 'N';
     }
 }
 

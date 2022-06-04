@@ -19,7 +19,7 @@ fn main() {
     println!("{:?}", splited);
     println!("{:?}", hangeul::join_phonemes(splited));
     // 테스트
-    println!("{:?}", postfix("test", "다"));
+    println!("{:?}", postfix("   ", "은"));
     println!("{:?}", postfix("나뭇가지(만렙)", "이다"));
     println!("{:?}", postfix("집", "는"));
 }
