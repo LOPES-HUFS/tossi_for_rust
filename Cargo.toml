@@ -2,7 +2,7 @@
 name = "tossi_for_rust"
 version = "0.1.0"
 edition = "2021"
-license = "GPL-3.0"
+license = "LGPL-2.1"
 
 [lib]
 name = "library"
