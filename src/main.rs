@@ -13,11 +13,6 @@ fn main() {
 
     let word = input.trim();
 
-    let output = filter::find_last_letter(word);
-    println!("{:?}", output);
-    let splited = hangeul::split_phonemes(output);
-    println!("{:?}", splited);
-    println!("{:?}", hangeul::join_phonemes(splited));
     // 테스트
     println!("{:?}", postfix("   ", "은"));
     println!("{:?}", postfix("나뭇가지(만렙)", "이다"));

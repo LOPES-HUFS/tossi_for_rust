@@ -20,6 +20,7 @@
 //! - 으로, 로: ro
 
 use crate::filter::filter_only_significant;
+use crate::particle::*;
 
 #[derive(Debug)]
 pub enum TossiKind {
@@ -85,4 +86,24 @@ fn two_letters(elements: &Vec<char>) -> TossiKind {
         (_, _) => TossiKind::None,
     };
     result
+}
+
+//테스트
+pub fn postfix(word: &str, tossi: &str) -> String {
+    let temp = Tossi::new(tossi);
+    println!(
+        "입력된 토시: {:?}, 토시 종류: {:?}",
+        temp.modified, temp.kind
+    );
+
+    let result = match temp.kind {
+        TossiKind::Neun => neun::change(&word),
+        TossiKind::Ka => ka::change(&word),
+        TossiKind::Ro => ro::change(&word),
+        TossiKind::Ida => ida::change(&word),
+        TossiKind::None => " ".to_string(),
+    };
+
+    let front = word.to_string();
+    front + &result
 }
