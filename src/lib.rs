@@ -1,6 +1,7 @@
 mod filter;
 mod hangeul;
 mod identifier;
+mod number;
 mod particle;
 
 // hangeul 모듈
@@ -19,6 +20,15 @@ pub fn find_last_letter(word: &str) -> char {
 
 pub fn guess_final(word: &str) -> char {
     filter::guess_final(word)
+}
+
+// number 모듈
+pub fn change_nun_to_hangeul(word: &str) -> String {
+    number::change_nun_to_hangeul(word)
+}
+
+pub fn change_int_char(num: char) -> char {
+    number::change_int_char(num)
 }
 // 테스트
 pub fn postfix(word: &str, tossi: &str) -> String {

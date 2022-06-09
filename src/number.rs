@@ -60,16 +60,3 @@ pub fn change_nun_to_hangeul(num: &str) -> String {
     temp_result = temp_result.replace(" ", "");
     temp_result.trim_start_matches('일').to_string()
 }
-
-/// 비 공개 함수틑 테스트
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn _change_nun_to_hangeul() {
-        let test = "10000";
-        let result = "만";
-        assert_eq!(result, change_nun_to_hangeul(test));
-    }
-}
