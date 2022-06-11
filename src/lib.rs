@@ -30,6 +30,7 @@ pub fn change_nun_to_hangeul(word: &str) -> String {
 pub fn change_int_char(num: char) -> char {
     number::change_int_char(num)
 }
+
 // 테스트
 pub fn postfix(word: &str, tossi: &str) -> String {
     identifier::postfix(word, tossi)
