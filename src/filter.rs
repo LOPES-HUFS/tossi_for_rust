@@ -1,4 +1,4 @@
-//! # 숫자와 기타 문자들을 처리해주는 모듈
+//! # 기타 문자들을 처리해주는 모듈 -> 숫자는 number 모듈로 이동
 //!
 //! ## guess_final
 //! 종성만 찾아서 도출해주는 함수
@@ -38,8 +38,7 @@
 //! ```
 
 use crate::hangeul::{is_hangeul, split_phonemes};
-
-const DIGITS: [char; 10] = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
+use crate::number::{is_digits, change_int_char};
 
 // ## 종성만 찾아서 도출해주는 함수
 // 이 함수는 특정 글자의 종성만 도출합니다.
@@ -89,20 +88,7 @@ pub fn filter_only_significant(word: &str) -> Vec<char> {
     return output;
 }
 
-/// ## 해당 문자가 숫자인지 아닌지 확인하는 함수
-/// 
-/// 입력된 문자가 숫자이면 `true`, 아니면 `false`를 반환합니다.
-fn is_digits(num: char) -> bool {
-    return '0' <= num && num <= '9';
-}
-
-/// ## 숫자를 한글발음으로 변환해주는 함수
-fn change_int_char(num: char) -> char {
-    let idx: usize = num as usize;
-    return DIGITS[idx - 48];
-}
-
-/// 비 공개 함수틑 테스트
+/// 비 공개 함수 테스트
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -112,56 +98,5 @@ mod tests {
         let temp = "넥슨(코리아)";
         let result = vec!['넥', '슨'];
         assert_eq!(result, filter_only_significant(temp));
-    }
-
-    #[test]
-    fn _change_int_char() {
-        let temp = '1';
-        assert_eq!('일', change_int_char(temp));
-
-        let temp = '2';
-        assert_eq!('이', change_int_char(temp));
-
-        let temp = '3';
-        assert_eq!('삼', change_int_char(temp));
-
-        let temp = '4';
-        assert_eq!('사', change_int_char(temp));
-
-        let temp = '5';
-        assert_eq!('오', change_int_char(temp));
-
-        let temp = '6';
-        assert_eq!('육', change_int_char(temp));
-
-        let temp = '7';
-        assert_eq!('칠', change_int_char(temp));
-
-        let temp = '8';
-        assert_eq!('팔', change_int_char(temp));
-
-        let temp = '9';
-        assert_eq!('구', change_int_char(temp));
-
-        let temp = '0';
-        assert_eq!('영', change_int_char(temp));
-    }
-
-    #[test]
-    fn _is_digits() {
-        let temp = '5';
-        assert_eq!(true, is_digits(temp));
-
-        let temp = '일';
-        assert_eq!(false, is_digits(temp));
-
-        let temp = '영';
-        assert_eq!(false, is_digits(temp));
-
-        let temp = ' ';
-        assert_eq!(false, is_digits(temp));
-
-        let temp = '😀';
-        assert_eq!(false, is_digits(temp));
     }
 }
