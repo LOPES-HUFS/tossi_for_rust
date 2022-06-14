@@ -36,6 +36,10 @@ fn _change_int_char() {
 
 #[test]
 fn _change_nun_to_hangeul() {
+    let test = "10";
+    let result = "십";
+    assert_eq!(result, change_nun_to_hangeul(test));
+
     let test = "10000";
     let result = "만";
     assert_eq!(result, change_nun_to_hangeul(test));
