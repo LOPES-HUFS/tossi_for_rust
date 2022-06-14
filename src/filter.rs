@@ -38,7 +38,7 @@
 //! ```
 
 use crate::hangeul::{is_hangeul, split_phonemes};
-use crate::number::{is_digits, change_nun_to_hangeul};
+use crate::number::{is_digits, change_num_to_hangeul};
 
 // ## 종성만 찾아서 도출해주는 함수
 // 이 함수는 특정 글자의 종성만 도출합니다.
@@ -88,7 +88,7 @@ pub fn filter_only_significant(word: &str) -> Vec<char> {
            numbers.push(c);
         }
         if !is_digits(c) || (i == word_len-1) {
-            let num = change_nun_to_hangeul(&numbers);
+            let num = change_num_to_hangeul(&numbers);
             let mut arr_num = num.chars().collect();
             output.append(&mut arr_num);
         }
