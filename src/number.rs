@@ -6,6 +6,7 @@
 //! - `change_int_char()': 숫자 한 글자를 한글 한 글자로 바꿔 줍니다.
 //! - `change_nun_to_hangeul()`: 문자열로 된 숫자를 한글 발음으로 바꿔 줍니다.
 
+
 // 숫자 한 글자를 한글 한 글자로 바꾸기 위한 목록
 const DIGITS: [char; 10] = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
 
@@ -16,6 +17,13 @@ const EXPS_UNTIL_1000: [char; 3] = ['십', '백', '천'];
 const EXPS: [char; 12] = [
     '만', '억', '조', '경', '해', '자', '양', '구', '간', '정', '재', '극',
 ];
+
+/// ## 해당 문자가 숫자인지 아닌지 확인하는 함수
+/// 
+/// 입력된 문자가 숫자이면 `true`, 아니면 `false`를 반환합니다.
+pub fn is_digits(num: char) -> bool {
+    return '0' <= num && num <= '9';
+}
 
 /// ## 숫자 한 글자를 한글 발음으로 변환해주는 함수
 pub fn change_int_char(num: char) -> char {
@@ -59,4 +67,29 @@ pub fn change_nun_to_hangeul(num: &str) -> String {
     temp_result = temp_result.replace("  ", "");
     temp_result = temp_result.replace(" ", "");
     temp_result.trim_start_matches('일').to_string()
+}
+
+
+/// 비 공개 함수 테스트
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn _is_digits() {
+        let temp = '5';
+        assert_eq!(true, is_digits(temp));
+
+        let temp = '일';
+        assert_eq!(false, is_digits(temp));
+
+        let temp = '영';
+        assert_eq!(false, is_digits(temp));
+
+        let temp = ' ';
+        assert_eq!(false, is_digits(temp));
+
+        let temp = '😀';
+        assert_eq!(false, is_digits(temp));
+    }
 }
