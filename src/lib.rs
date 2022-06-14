@@ -23,8 +23,8 @@ pub fn guess_final(word: &str) -> char {
 }
 
 // number 모듈
-pub fn change_nun_to_hangeul(word: &str) -> String {
-    number::change_nun_to_hangeul(word)
+pub fn change_num_to_hangeul(word: &str) -> String {
+    number::change_num_to_hangeul(word)
 }
 
 pub fn change_int_char(num: char) -> char {

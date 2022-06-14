@@ -38,7 +38,7 @@
 //! ```
 
 use crate::hangeul::{is_hangeul, split_phonemes};
-use crate::number::{is_digits, change_int_char};
+use crate::number::{is_digits, change_num_to_hangeul};
 
 // ## 종성만 찾아서 도출해주는 함수
 // 이 함수는 특정 글자의 종성만 도출합니다.
@@ -66,9 +66,11 @@ pub fn find_last_letter(word: &str) -> char {
 
 /// ##단어에서 불필요한 요소 제거하는 함수
 pub fn filter_only_significant(word: &str) -> Vec<char> {
+    let word_len = word.chars().count();
     let mut output: Vec<char> = Vec::new();
+    let mut numbers = String::new();
     let mut bracket: bool = false;
-    for c in word.chars() {
+    for (i, c) in word.chars().enumerate() {
         //괄호 있는지 확인
         if c == '(' {
             bracket = true;
@@ -80,9 +82,15 @@ pub fn filter_only_significant(word: &str) -> Vec<char> {
             continue;
         } else if is_hangeul(c) {
             output.push(c);
-        } else if is_digits(c) {
-            let num = change_int_char(c);
-            output.push(num);
+        }
+        //숫자라면 모아서 변형 후 아웃풋에 추가
+        if is_digits(c) {
+           numbers.push(c);
+        }
+        if !is_digits(c) || (i == word_len-1) {
+            let num = change_num_to_hangeul(&numbers);
+            let mut arr_num = num.chars().collect();
+            output.append(&mut arr_num);
         }
     }
     return output;
@@ -98,5 +106,10 @@ mod tests {
         let temp = "넥슨(코리아)";
         let result = vec!['넥', '슨'];
         assert_eq!(result, filter_only_significant(temp));
+
+        let temp = "비타500";
+        let result = vec!['비','타','오','백'];
+        assert_eq!(result, filter_only_significant(temp));
+
     }
 }

@@ -19,7 +19,6 @@ const EXPS: [char; 12] = [
 ];
 
 /// ## 해당 문자가 숫자인지 아닌지 확인하는 함수
-/// 
 /// 입력된 문자가 숫자이면 `true`, 아니면 `false`를 반환합니다.
 pub fn is_digits(num: char) -> bool {
     return '0' <= num && num <= '9';
@@ -33,11 +32,11 @@ pub fn change_int_char(num: char) -> char {
 
 /// ## 숫자를 한글 발음으로 바꿔주는 함수
 /// 입력된 숫자를 한글 발음으로 바꿔줍니다.
-pub fn change_nun_to_hangeul(num: &str) -> String {
+pub fn change_num_to_hangeul(num: &str) -> String {
     // 입력된 숫자 문자열을 뒤에서부터 읽기 위해서 입력된 숫자 문자열을 뒤집는다.
     let char_vec: Vec<char> = num.chars().rev().collect();
     let mut temp_result: Vec<char> = Vec::new();
-
+    
     let mut temp_exps = 0;
 
     for (i, x) in char_vec.iter().enumerate() {
