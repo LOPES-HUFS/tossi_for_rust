@@ -31,12 +31,16 @@ pub fn change_int_char(num: char) -> char {
 }
 
 /// ## 숫자를 한글 발음으로 바꿔주는 함수
-/// 입력된 숫자를 한글 발음으로 바꿔줍니다.
+/// 입력된 숫자를 단위를 포함한 발음으로 바꿔줍니다.
 pub fn change_num_to_hangeul(num: &str) -> String {
     // 입력된 숫자 문자열을 뒤에서부터 읽기 위해서 입력된 숫자 문자열을 뒤집는다.
     let char_vec: Vec<char> = num.chars().rev().collect();
+
+    //한자리수인 경우 바로 읽어서 도출한다.
+    if char_vec.len() == 1 {
+        return change_int_char(char_vec[0]).to_string();
+    }
     let mut temp_result: Vec<char> = Vec::new();
-    
     let mut temp_exps = 0;
 
     for (i, x) in char_vec.iter().enumerate() {
@@ -66,6 +70,7 @@ pub fn change_num_to_hangeul(num: &str) -> String {
     temp_result = temp_result.replace("  ", "");
     temp_result = temp_result.replace(" ", "");
     temp_result.trim_start_matches('일').to_string()
+    
 }
 
 
