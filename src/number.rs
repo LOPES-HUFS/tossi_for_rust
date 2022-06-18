@@ -11,7 +11,7 @@
 const DIGITS: [char; 10] = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
 
 // 10부터 1000까지 한글로 숫자 자리수 읽기 위한 목록
-const EXPS_UNTIL_1000: [char; 3] = ['십', '백', '천'];
+const EXPS_UNTIL_1000: [char; 3] = ['십','백','천'];
 
 // 4번째 자리수부터 4의 배수로 48번째 자리수까지 일기 위한 목록
 const EXPS: [char; 12] = [
@@ -46,6 +46,7 @@ pub fn change_num_to_hangeul(num: &str) -> String {
     for (i, x) in char_vec.iter().enumerate() {
         temp_result.push(change_int_char(*x));
         temp_result.push(' ');
+        
         if ((i + 1) % 4) == 0 {
             temp_result.push(EXPS[temp_exps]);
             temp_exps += 1;
@@ -57,7 +58,7 @@ pub fn change_num_to_hangeul(num: &str) -> String {
             temp_result.push(EXPS_UNTIL_1000[2]);
         }
     }
-    // 맨 마지막에 '십'이라는 글자가 들어가는 버그 때문에 들어간 것을 제거한다.
+    // 맨 마지막에 추가되는 단위떄문에 글자가 들어가는 버그 때문에 들어간 것을 제거한다.
     temp_result.pop();
     // 뒤집어 입력된 숫자 문자열을 뒤집어 정상으로 되돌려 놓는다.
     temp_result.reverse();
@@ -72,6 +73,8 @@ pub fn change_num_to_hangeul(num: &str) -> String {
     temp_result.trim_start_matches('일').to_string()
     
 }
+
+
 
 
 /// 비 공개 함수 테스트
