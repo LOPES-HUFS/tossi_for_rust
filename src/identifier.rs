@@ -104,7 +104,7 @@ pub fn postfix(word: &str, tossi: &str) -> String {
         TossiKind::Ka => ka::change(&word),
         TossiKind::Ro => ro::change(&word),
         TossiKind::Ida => ida::change(&word),
-        TossiKind::None => " ".to_string(),
+        TossiKind::None => tossi.to_string(),
     };
 
     let front = word.to_string();

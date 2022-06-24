@@ -24,18 +24,6 @@
 //! ex) 넥슨(코리아) -> [넥,슨]  
 //! ex) 비타500 -> [비,타,오,백]  
 //! ```
-//!
-//! ## is_digits
-//! 숫자인지 아닌지 확인하는 함수.
-//! ```text
-//! ex) 500 -> True  
-//! ```
-//!
-//! ## change_int_char
-//! 숫자를 한글발음으로 변환해주는 함수.
-//! ```text
-//! ex) 5 -> 오  
-//! ```
 
 use crate::hangeul::{is_hangeul, split_phonemes};
 use crate::number::{is_digits, change_num_to_hangeul};
