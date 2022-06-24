@@ -49,7 +49,7 @@ fn _limit_word_len() {
     let temp = "12345";
     assert_eq!(Ok(()), limit_word_len(temp));
 
-    let temp = "아이디는 50자까지는 설정이 가능합니다.";
+    let temp = "아이디는 50자까지 설정이 가능합니다.";
     assert_eq!(Ok(()), limit_word_len(temp));
 
     let temp = "10000000000000000000000000000000000000000000000000000";
