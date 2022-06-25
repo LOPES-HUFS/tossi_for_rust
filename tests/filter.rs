@@ -8,6 +8,14 @@ fn _find_last_letter() {
     assert_eq!(result, find_last_letter(temp));
 
     let temp = "비타500";
-    let result = '영';
+    let result = '백';
     assert_eq!(result, find_last_letter(temp));
+
+    // let temp = "naver";
+    // let result = 'r';
+    // assert_eq!(result, find_last_letter(temp));
+
+    // let temp = "diablo";
+    // let result = 'o';
+    // assert_eq!(result, find_last_letter(temp));
 }
