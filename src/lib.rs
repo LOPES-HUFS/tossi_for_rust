@@ -3,6 +3,8 @@ mod hangeul;
 mod identifier;
 mod number;
 mod particle;
+mod verifier;
+
 
 // hangeul 모듈
 pub fn join_phonemes(word: [char; 3]) -> char {
@@ -23,8 +25,8 @@ pub fn guess_final(word: &str) -> char {
 }
 
 // number 모듈
-pub fn change_nun_to_hangeul(word: &str) -> String {
-    number::change_nun_to_hangeul(word)
+pub fn change_num_to_hangeul(word: &str) -> String {
+    number::change_num_to_hangeul(word)
 }
 
 pub fn change_int_char(num: char) -> char {
@@ -34,4 +36,9 @@ pub fn change_int_char(num: char) -> char {
 // 테스트
 pub fn postfix(word: &str, tossi: &str) -> String {
     identifier::postfix(word, tossi)
+}
+
+// verifier 모듈
+pub fn verifiers(word: &str, tossi: &str) {
+    verifier::verifiers(word, tossi)
 }
