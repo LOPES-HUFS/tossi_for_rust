@@ -35,41 +35,47 @@ pub fn change_num_to_hangeul(num: &str) -> String {
     // 입력된 숫자 문자열을 뒤에서부터 읽기 위해서 입력된 숫자 문자열을 뒤집는다.
     let char_vec: Vec<char> = num.chars().rev().collect();
 
-    //한자리수인 경우 바로 읽어서 도출한다.
+    //한 자리수인 경우 바로 읽어서 도출한다.
     if char_vec.len() == 1 {
         return change_int_char(char_vec[0]).to_string();
-    }
-    let mut temp_result: Vec<char> = Vec::new();
-    let mut temp_exps = 0;
+    //한 자리수 이상인 경우를 처리한다.
+    } else {
+        let mut temp_result: Vec<char> = Vec::new();
+        let mut temp_exps = 0;
 
-    for (i, x) in char_vec.iter().enumerate() {
-        temp_result.push(change_int_char(*x));
-        temp_result.push(' ');
+        for (i, x) in char_vec.iter().enumerate() {
+            temp_result.push(change_int_char(*x));
+            temp_result.push(' ');
 
-        if ((i + 1) % 4) == 0 {
-            temp_result.push(EXPS[temp_exps]);
-            temp_exps += 1;
-        } else if ((i + 1) % 4) == 1 {
-            temp_result.push(EXPS_UNTIL_1000[0]);
-        } else if ((i + 1) % 4) == 2 {
-            temp_result.push(EXPS_UNTIL_1000[1]);
-        } else {
-            temp_result.push(EXPS_UNTIL_1000[2]);
+            if ((i + 1) % 4) == 0 {
+                temp_result.push(EXPS[temp_exps]);
+                temp_exps += 1;
+            } else if ((i + 1) % 4) == 1 {
+                temp_result.push(EXPS_UNTIL_1000[0]);
+            } else if ((i + 1) % 4) == 2 {
+                temp_result.push(EXPS_UNTIL_1000[1]);
+            } else {
+                temp_result.push(EXPS_UNTIL_1000[2]);
+            }
         }
-    }
-    // 맨 마지막에 추가되는 단위떄문에 글자가 들어가는 버그 때문에 들어간 것을 제거한다.
-    temp_result.pop();
-    // 뒤집어 입력된 숫자 문자열을 뒤집어 정상으로 되돌려 놓는다.
-    temp_result.reverse();
+        // 맨 마지막에 추가되는 단위떄문에 글자가 들어가는 버그 때문에 들어간 것을 제거한다.
+        temp_result.pop();
+        // 뒤집어 입력된 숫자 문자열을 뒤집어 정상으로 되돌려 놓는다.
+        temp_result.reverse();
 
-    let mut temp_result: String = temp_result.iter().collect();
-    temp_result = temp_result.replace("영천", "");
-    temp_result = temp_result.replace("영백", "");
-    temp_result = temp_result.replace("영십", "");
-    temp_result = temp_result.replace("영", "");
-    temp_result = temp_result.replace("  ", "");
-    temp_result = temp_result.replace(" ", "");
-    temp_result.trim_start_matches('일').to_string()
+        let mut temp_result: String = temp_result.iter().collect();
+        temp_result = temp_result.replace("영천", "");
+        temp_result = temp_result.replace("영백", "");
+        temp_result = temp_result.replace("영십", "");
+        temp_result = temp_result.replace("영", "");
+        temp_result = temp_result.replace("일만", "만");
+        temp_result = temp_result.replace("일천", "천");
+        temp_result = temp_result.replace("일백", "백");
+        temp_result = temp_result.replace("일십", "십");
+        temp_result = temp_result.replace("  ", "");
+        temp_result = temp_result.replace(" ", "");
+        temp_result.trim_start_matches('일').to_string()
+    }
 }
 
 /// 비 공개 함수 테스트
