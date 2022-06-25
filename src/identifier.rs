@@ -92,7 +92,7 @@ fn two_letters(elements: &Vec<char>) -> TossiKind {
 //테스트
 pub fn postfix(word: &str, tossi: &str) -> String {
     //파라미터에 올바른 규격의 값이 들어왔는지 확인하기
-    verifiers(word,tossi);
+    verifiers(word, tossi);
     let temp = Tossi::new(tossi);
     println!(
         "입력된 토시: {:?}, 토시 종류: {:?}",

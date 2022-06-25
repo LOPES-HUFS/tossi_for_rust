@@ -9,5 +9,8 @@ fn _verifiers_tossi() {
 #[test]
 #[should_panic(expected = "The length has been exceeded. Set the word length to less than 50.")]
 fn _verifiers_word() {
-    verifiers("10000000000000000000000000000000000000000000000000000", "은");
+    verifiers(
+        "10000000000000000000000000000000000000000000000000000",
+        "은",
+    );
 }

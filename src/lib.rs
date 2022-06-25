@@ -5,7 +5,6 @@ mod number;
 mod particle;
 mod verifier;
 
-
 // hangeul 모듈
 pub fn join_phonemes(word: [char; 3]) -> char {
     hangeul::join_phonemes(word)

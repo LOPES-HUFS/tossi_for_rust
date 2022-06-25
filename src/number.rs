@@ -6,12 +6,11 @@
 //! - `change_int_char()': 숫자 한 글자를 한글 한 글자로 바꿔 줍니다.
 //! - `change_nun_to_hangeul()`: 문자열로 된 숫자를 한글 발음으로 바꿔 줍니다.
 
-
 // 숫자 한 글자를 한글 한 글자로 바꾸기 위한 목록
 const DIGITS: [char; 10] = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
 
 // 10부터 1000까지 한글로 숫자 자리수 읽기 위한 목록
-const EXPS_UNTIL_1000: [char; 3] = ['십','백','천'];
+const EXPS_UNTIL_1000: [char; 3] = ['십', '백', '천'];
 
 // 4번째 자리수부터 4의 배수로 48번째 자리수까지 일기 위한 목록
 const EXPS: [char; 12] = [
@@ -46,7 +45,7 @@ pub fn change_num_to_hangeul(num: &str) -> String {
     for (i, x) in char_vec.iter().enumerate() {
         temp_result.push(change_int_char(*x));
         temp_result.push(' ');
-        
+
         if ((i + 1) % 4) == 0 {
             temp_result.push(EXPS[temp_exps]);
             temp_exps += 1;
@@ -71,11 +70,7 @@ pub fn change_num_to_hangeul(num: &str) -> String {
     temp_result = temp_result.replace("  ", "");
     temp_result = temp_result.replace(" ", "");
     temp_result.trim_start_matches('일').to_string()
-    
 }
-
-
-
 
 /// 비 공개 함수 테스트
 #[cfg(test)]

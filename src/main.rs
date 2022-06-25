@@ -1,5 +1,5 @@
-use library::postfix;
 use library::find_last_letter;
+use library::postfix;
 
 fn main() {
     // 테스트
