@@ -44,7 +44,8 @@ pub fn change_num_to_hangeul(num: &str) -> String {
         let mut temp_exps = 0;
 
         for (i, x) in char_vec.iter().enumerate() {
-            temp_result.push(change_int_char(*x));
+            let num_char = change_int_char(*x);
+            temp_result.push(num_char);
             temp_result.push(' ');
 
             if ((i + 1) % 4) == 0 {
@@ -60,6 +61,8 @@ pub fn change_num_to_hangeul(num: &str) -> String {
         }
         // 맨 마지막에 추가되는 단위떄문에 글자가 들어가는 버그 때문에 들어간 것을 제거한다.
         temp_result.pop();
+        // 디버그용 println 삽입, 뒤집기 전에 확인하는 것이 디버그할 때 더 효과적이다.
+        println!("{:?}", temp_result);
         // 뒤집어 입력된 숫자 문자열을 뒤집어 정상으로 되돌려 놓는다.
         temp_result.reverse();
 
@@ -74,7 +77,8 @@ pub fn change_num_to_hangeul(num: &str) -> String {
         temp_result = temp_result.replace("일십", "십");
         temp_result = temp_result.replace("  ", "");
         temp_result = temp_result.replace(" ", "");
-        temp_result.trim_start_matches('일').to_string()
+        // temp_result.trim_start_matches('일').to_string()
+        temp_result.to_string()
     }
 }
 
