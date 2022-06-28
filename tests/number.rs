@@ -60,6 +60,10 @@ fn _change_num_to_hangeul() {
     let result = "만십";
     assert_eq!(result, change_num_to_hangeul(test));
 
+    let test = "20100";
+    let result = "이만백";
+    assert_eq!(result, change_num_to_hangeul(test));
+
     let test = "100009";
     let result = "십만구";
     assert_eq!(result, change_num_to_hangeul(test));
@@ -70,6 +74,10 @@ fn _change_num_to_hangeul() {
 
     let test = "100000000";
     let result = "일억";
+    assert_eq!(result, change_num_to_hangeul(test));
+
+    let test = "1000000000";
+    let result = "십억";
     assert_eq!(result, change_num_to_hangeul(test));
 
     let test = "10000000000000000000000000000000000000000000000000";
