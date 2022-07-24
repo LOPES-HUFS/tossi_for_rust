@@ -1,11 +1,9 @@
-use library::find_last_letter;
 use library::postfix;
 
 fn main() {
     // 테스트
-    println!("{:?}", postfix("테스트", "은"));
-    println!("{:?}", postfix("나뭇가지(만렙)", "이다"));
-    println!("{:?}", postfix("집", "보다"));
-    println!("{:?}", find_last_letter("비타500"));
-    println!("{:?}", find_last_letter("비타5"));
+    println!("{} 성공했습니다.", postfix("테스트", "은"));
+    println!("{} 시민이었습니다.", postfix("임포스터", "은"));
+    println!("이 아이템은 {}", postfix("나뭇가지", "이다"));
+    println!("{} 획득했습니다.",  postfix("비타500", "를"));
 }

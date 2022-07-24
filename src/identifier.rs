@@ -29,6 +29,7 @@ pub enum TossiKind {
     Ka,
     Ro,
     Ida,
+    Eul,
     None,
 }
 
@@ -71,6 +72,7 @@ fn one_letter(element: char) -> TossiKind {
     let result = match element {
         '은' | '는' => TossiKind::Neun,
         '이' | '가' => TossiKind::Ka,
+        '을' | '를' => TossiKind::Eul,
         '로' => TossiKind::Ro,
         '다' => TossiKind::Ida,
         _ => TossiKind::None,
@@ -94,16 +96,12 @@ pub fn postfix(word: &str, tossi: &str) -> String {
     //파라미터에 올바른 규격의 값이 들어왔는지 확인하기
     verifiers(word, tossi);
     let temp = Tossi::new(tossi);
-    println!(
-        "입력된 토시: {:?}, 토시 종류: {:?}",
-        temp.modified, temp.kind
-    );
-
     let result = match temp.kind {
         TossiKind::Neun => neun::change(&word),
         TossiKind::Ka => ka::change(&word),
         TossiKind::Ro => ro::change(&word),
         TossiKind::Ida => ida::change(&word),
+        TossiKind::Eul => eul::change(&word),
         TossiKind::None => tossi.to_string(),
     };
 
