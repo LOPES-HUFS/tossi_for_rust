@@ -28,9 +28,9 @@
 use crate::hangeul::{is_hangeul, split_phonemes};
 use crate::number::{change_num_to_hangeul, is_digits};
 
-// ## 종성만 찾아서 도출해주는 함수
-// 이 함수는 특정 글자의 종성만 도출합니다.
-#[allow(dead_code)]
+/// ## 종성만 찾아서 도출해주는 함수
+/// 이 함수는 특정 글자의 종성만 도출합니다.
+/// #[allow(dead_code)]
 pub fn guess_final(word: &str) -> char {
     let filtered = find_last_letter(word);
     // find_last_letter()은 한글이나 숫자가 없을 경우 ' '을 출력한다.
@@ -52,7 +52,16 @@ pub fn find_last_letter(word: &str) -> char {
     }
 }
 
-/// ##단어에서 불필요한 요소 제거하는 함수
+/// ## 단어에서 불필요한 요소를 제거하는 함수
+/// 토시를 선택할 때 불필요한 것들을 아래 리스트를 고려하여 제거한다.
+/// 1. '넥슨(코리아)'과 같은 것에 토시를 추가하는 경우 통상적으로 괄호를 제외하고
+/// '넥슨'에 맟춰 토스를 선택한다. 따라서 토시를 선택하기 위해서
+/// 괄호 안에 있는 한글 글자들은 괄호와 함께 제거하고 그 나머지 것으로 토시 선택을
+/// 고려해야 한다.
+/// 2. 기본적으로 한글이 아닌 외국어에 대해서는 토시를 추가하는 것을 고려하지 않는다.
+/// 따라서 한글 글자가 아닌 글자들은 불필요한 요소로 간주한다.
+/// 3. 숫자인 경우에는 숫자를 읽는 함수를 통해 한글로 바꾼 다음, 이를 가지고
+/// 토시 선택을 고려한다.
 pub fn filter_only_significant(word: &str) -> Vec<char> {
     let word_len = word.chars().count();
     let mut output: Vec<char> = Vec::new();
