@@ -92,7 +92,7 @@ fn two_letters(elements: &Vec<char>) -> TossiKind {
 }
 
 //테스트
-pub fn postfix(word: &str, tossi: &str) -> String {
+pub fn postfix(word: &str, tossi: &str) -> (String, String) {
     //파라미터에 올바른 규격의 값이 들어왔는지 확인하기
     verifiers(word, tossi);
     let temp = Tossi::new(tossi);
@@ -106,5 +106,5 @@ pub fn postfix(word: &str, tossi: &str) -> String {
     };
 
     let front = word.to_string();
-    front + &result
+    (front, result)
 }

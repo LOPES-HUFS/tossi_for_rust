@@ -32,9 +32,16 @@ pub fn change_int_char(num: char) -> char {
     number::change_int_char(num)
 }
 
-// 테스트
+// postfix() 함수
 pub fn postfix(word: &str, tossi: &str) -> String {
-    identifier::postfix(word, tossi)
+    let temp = identifier::postfix(word, tossi);
+    temp.0 + &temp.1
+}
+
+// pick() 함수
+pub fn pick(word: &str, tossi: &str) -> String {
+    let temp = identifier::postfix(word, tossi);
+    return temp.1
 }
 
 // verifier 모듈
