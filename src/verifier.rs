@@ -7,6 +7,8 @@ const TOSSI_LIST: [&str; 27] = [
     "같이", "밖에", "부터", "까지", "마냥", "처럼", "마저", "조차", "마냥", "커녕", "을", "를",
 ];
 
+const INPUT_LENGTH_LIMITATION: usize = 50;
+
 pub fn verifiers(word: &str, tossi: &str) {
     match verifier_tossi(tossi) {
         Ok(_) => (),
@@ -18,26 +20,21 @@ pub fn verifiers(word: &str, tossi: &str) {
     }
 }
 
-// 올바른 토씨를 입력했는지 확인해주는 함수
+/// ## 여기에서 처리할 수 있는 토씨를 입력했는지 확인해주는 함수
+/// 
 fn verifier_tossi(tossi: &str) -> Result<(), &str> {
-    let mut status = 0;
-    for check in TOSSI_LIST.iter() {
-        if check == &tossi {
-            status = 1;
-            break;
-        }
-    }
-    if status == 1 {
-        return Ok(());
-    } else {
+    let res = TOSSI_LIST.iter().position(|&s| s == tossi);
+    if res == None {
         return Err("This value is not correct tossi.");
+    } else {
+        // println!("{}: 처리할 수 있는 토시", TOSSI_LIST[res.unwrap()]);
+        return Ok(());
     }
 }
 
-// 파라미터롤 받는 단어를 제한 기준 함수
+/// ## 변환할 토시와 함께 입력된 토시를 사용할 단어의 길이를 검사하는 함수
 fn limit_word_len(word: &str) -> Result<(), &str> {
-    let limitation = 50;
-    if word.chars().count() <= limitation {
+    if word.chars().count() <= INPUT_LENGTH_LIMITATION {
         return Ok(());
     } else {
         return Err("The length has been exceeded. Set the word length to less than 50.");
