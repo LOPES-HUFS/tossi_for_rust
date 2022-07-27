@@ -21,7 +21,6 @@
 
 use crate::filter::filter_only_significant;
 use crate::particle::*;
-use crate::verifier::verifiers;
 
 #[derive(Debug)]
 pub enum TossiKind {
@@ -94,7 +93,6 @@ fn two_letters(elements: &Vec<char>) -> TossiKind {
 //테스트
 pub fn postfix(word: &str, tossi: &str) -> String {
     //파라미터에 올바른 규격의 값이 들어왔는지 확인하기
-    verifiers(word, tossi);
     let temp = Tossi::new(tossi);
     let result = match temp.kind {
         TossiKind::Neun => neun::change(&word),
