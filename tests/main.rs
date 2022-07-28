@@ -25,7 +25,7 @@ fn _postfix() {
 
     let word = "나무";
     let tossi = "로";
-    let result = "집로";
+    let result = "나무로";
     assert_eq!(result, postfix(word, tossi));
 
     let word = "나무";
