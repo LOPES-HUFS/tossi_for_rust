@@ -5,8 +5,8 @@ mod number;
 mod particle;
 mod verifier;
 
-use identifier::{Tossi, TossiKind};
 use crate::particle::*;
+use identifier::{Tossi, TossiKind};
 
 // hangeul 모듈
 pub fn join_phonemes(word: [char; 3]) -> char {
