@@ -1,13 +1,16 @@
-//! # 입력된 토시(tossi)가 어떤 것인지 알아내는 모듈
+//! # 입력된 토시(tossi)가 어떤 것인지 알아내 저장하는 토시 구조체
 //!
-//! 아래와 같은 형식으로 입력된 것 중 두 번째 입력된 토시가 어떤 종류인지 파악합니다.
+//! 사용자가 입력한 토시를 변환해서 저장하고,
+//! 변환한 값을 토대로 어떤 종류인지 분류한 다음 분류한 결과를 저장한다.
+//! 사용법은 아래와 같다.
 //!
-//! ```text
-//! postfix('집', '(으)로')
-//! postfix("집", "로"))
-//! postfix("집", "(으)로")
+//! ```rust
+//! mod identifier;
+//! let test_tossi = "으로";
+//! let temp = Tossi::new(test_tossi);
+//! println!("입력된 토시: {:?}", temp.modified);
+//! println!("토시 종류: {:?}", temp.kind);
 //! ```
-//!
 //! ## 조사 종류를 영어로 표기하기
 //!
 //! 아래 로마자 표기법에 따라 변환했다.
@@ -18,10 +21,9 @@
 //! - 은, 는: neun
 //! - 이, 가: ka
 //! - 으로, 로: ro
+//!
 
 use crate::filter::filter_only_significant;
-use crate::particle::*;
-use crate::verifier::verifiers;
 
 #[derive(Debug)]
 pub enum TossiKind {
@@ -39,6 +41,7 @@ pub enum TossiKind {
 /// 사용법은 아래와 같다.
 ///
 /// ```rust
+/// mod identifier;
 /// let test_tossi = "으로";
 /// let temp = Tossi::new(test_tossi);
 /// println!("입력된 토시: {:?}", temp.modified);
@@ -89,22 +92,4 @@ fn two_letters(elements: &Vec<char>) -> TossiKind {
         (_, _) => TossiKind::None,
     };
     result
-}
-
-//테스트
-pub fn postfix(word: &str, tossi: &str) -> (String, String) {
-    //파라미터에 올바른 규격의 값이 들어왔는지 확인하기
-    verifiers(word, tossi);
-    let temp = Tossi::new(tossi);
-    let result = match temp.kind {
-        TossiKind::Neun => neun::change(&word),
-        TossiKind::Ka => ka::change(&word),
-        TossiKind::Ro => ro::change(&word),
-        TossiKind::Ida => ida::change(&word),
-        TossiKind::Eul => eul::change(&word),
-        TossiKind::None => tossi.to_string(),
-    };
-
-    let front = word.to_string();
-    (front, result)
 }
