@@ -1,4 +1,4 @@
-//! # 입력된 토시(tossi)가 어떤 것인지 알아내 저장하는 토시 구조체
+//! # 입력된 토시(tossi)가 어떤 것인지 알아내 저장하는 토시 구조체를 구현한 모듈
 //!
 //! 사용자가 입력한 토시를 변환해서 저장하고,
 //! 변환한 값을 토대로 어떤 종류인지 분류한 다음 분류한 결과를 저장한다.
@@ -18,9 +18,10 @@
 //!  
 //! https://ko.wiktionary.org/wiki/부록:로마자_표기법/국어
 //!
-//! - 은, 는: neun
-//! - 이, 가: ka
-//! - 으로, 로: ro
+//! - "은", "는": Neun
+//! - "이", "가": Ka
+//! - "으로", "로": Ro
+//! - "이다", "다": Ida
 //!
 
 use crate::filter::filter_only_significant;
@@ -34,19 +35,6 @@ pub enum TossiKind {
     Eul,
     None,
 }
-
-/// ## 토시 구조체
-/// 사용자가 입력한 토시를 변환해서 저장하고,
-/// 변환한 값을 토대로 어떤 종류인지 분류한 다음 분류한 결과를 저장한다.
-/// 사용법은 아래와 같다.
-///
-/// ```rust
-/// mod identifier;
-/// let test_tossi = "으로";
-/// let temp = Tossi::new(test_tossi);
-/// println!("입력된 토시: {:?}", temp.modified);
-/// println!("토시 종류: {:?}", temp.kind);
-/// ```
 
 pub struct Tossi {
     pub modified: Vec<char>,
