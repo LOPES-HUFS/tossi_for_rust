@@ -47,9 +47,26 @@ fn is_consonant(word: char) -> bool {
 }
 
 /// 모음인지 체크하는 함수
-// fn is_medial(word: char) -> bool {
-//     return 'ㅏ' <= word && word <= 'ㅣ';
-// }
+fn is_medial(word: char) -> bool {
+    return 'ㅏ' <= word && word <= 'ㅣ';
+}
+
+/// ## 한글 음절인지 아닌지 체크하는 함수
+/// 초,중,종성으로 들어온 것이 합치면 적절하게 한글 음절이 될 수 없는지 있는지를 판단하는 함수
+/// 사용법: 이 모둘 아래 tests 모듈, _hangeul.rs 참고
+
+fn is_hangul_syllable(word: [char; 3]) -> bool {
+    if is_consonant(word[0]) && is_medial(word[1]) {
+        let res = FINAL.iter().position(|&s| s == word[2]);
+        if res == None {
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        return false;
+    }
+}
 
 /// ## 초,중,종성을 하나의 글자로 합쳐주는 함수
 /// 이 함수는 기본적으로 입력된 것이 종성까지 가지고 있는다고 가정하고 작성하였다.
@@ -60,10 +77,10 @@ fn is_consonant(word: char) -> bool {
 ///    let temp = ['ㄱ', 'ㅏ', ' '];
 ///    assert_eq!('가', library::join_phonemes(temp));
 /// ```
-/// 사용법은 tests 모듈, /tests/hangeul.rs 참고
+/// 사용법 tests 모듈, /tests/_is_hangul_syllable.rs 참고
 pub fn join_phonemes(word: [char; 3]) -> char {
-    //한글이 아닌 경우 그대로 출력
-    if !is_consonant(word[0]) {
+    //한글이 아닌 경우에는 입력된 첫 번째 글자 반환합니다.
+    if is_hangul_syllable(word) == false {
         return word[0];
     }
     // 파라미터로 받은 초,중,종성 인덱스 추출
@@ -123,5 +140,20 @@ mod tests {
 
         let temp = '😀';
         assert_eq!(false, is_hangeul(temp));
+    }
+
+    #[test]
+    fn _is_hangul_syllable() {
+        let temp = ['ㄱ', 'ㅏ', 'ㄴ'];
+        assert_eq!(true, is_hangul_syllable(temp));
+
+        let temp = ['ㄱ', 'ㄴ', 'ㄷ'];
+        assert_eq!(false, is_hangul_syllable(temp));
+
+        let temp = ['ㅊ', 'ㄴ', 'ㅓ'];
+        assert_eq!(false, is_hangul_syllable(temp));
+
+        let temp = ['😀', 'ㄴ', 'ㄷ'];
+        assert_eq!(false, is_hangul_syllable(temp));
     }
 }
