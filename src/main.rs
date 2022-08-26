@@ -17,12 +17,14 @@ struct Args {
     tossi: String,
 
     /// 반환 값에 사용자가 입력한 단어 적용 유무
-    #[clap(short, long, action, value_name = "true or false")]
+    #[clap(short, long, action, value_name = "true 또는 false")]
     only_tossi: Option<bool>,
 }
 
 fn main() {
     let args = Args::parse();
+    // 아래 값을 `Some(true)`으로 설정해야 이 `only_tossi`을 넣지 않더라고
+    // `false`라고 인식하여 단어와 프로그램이 찾는 적절한 토시를 합쳐서 출력하게 된다.
     if args.only_tossi == Some(true) {
         println!("{}", pick(&args.word, &args.tossi));
     } else {
