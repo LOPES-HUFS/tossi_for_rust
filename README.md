@@ -9,6 +9,63 @@
 - `pick(word: &str, tossi: &str)`: 입력된 것들을 참고해 `word`에 적절한 `tossi`를 반환합니다.
 - `postfix(word: &str, tossi: &str)`: 입력된 것들을 참고해 `word`에 적절한 `tossi`를 덧붙여 반환합니다.
 
+## 터미널에서 사용하기
+
+이 프로젝트는 라이브러리 형태로 목표하는 기능들을 구현한 다음 이를 다양한 방법으로 적용하고자 합니다. 기본적으로 CLI(Command-Line Interface, 이하 커맨드 라인 인터페이스)에서 작동하는 앱을 만들고자 합니다. 아래와 같이 컴파일을 하면 커맨드 라인 인터페이스에서도 사용할 수 있습니다.
+
+### `cargo run`로 컴파일한 다음 사용하는 법
+
+```rust
+cargo run -- --word 테스트  --tossi 은
+cargo run -- --word 테스트  --tossi 은 -o true
+```
+
+구체적인 사용법 보기
+
+```rust
+➜ cargo run -- --help
+    Finished dev [unoptimized + debuginfo] target(s) in 0.02s
+     Running `target/debug/tossi --help`
+tossi 0.1.0
+Tossi(토시)는 사용자가 입력한 단어와 토시를 입력하렸을 때, 입력한 단어에 적합한
+
+USAGE:
+    tossi [OPTIONS] --word <단어> --tossi <토시>
+
+OPTIONS:
+    -h, --help                       Print help information
+    -o, --only-tossi <ONLY_TOSSI>    반환 값에 사용자가 입력한 단어 적용 유무 [possible values: true, false]
+    -t, --tossi <토시>               입력한 단어에 적용할 토시
+    -V, --version                    Print version information
+    -w, --word <단어>                토시를 적용하고 싶은 단어
+```
+
+### `cargo build`로 컴파일한 다음 사용하는 법
+
+```rust
+target/debug/tossi -h                
+target/debug/tossi -t 을 -w 나뭇가지 
+target/debug/tossi -t 을 -w 나뭇가지 -o true
+```
+
+구체적인 사용법 보기
+
+```rust
+➜ target/debug/tossi -h                
+tossi 0.1.0
+Tossi(토시)는 사용자가 입력한 단어와 토시를 입력하렸을 때, 입력한 단어에 적합한
+
+USAGE:
+    tossi [OPTIONS] --word <단어> --tossi <토시>
+
+OPTIONS:
+    -h, --help                       Print help information
+    -o, --only-tossi <ONLY_TOSSI>    반환 값에 사용자가 입력한 단어 적용 유무 [possible values: true, false]
+    -t, --tossi <토시>               입력한 단어에 적용할 토시
+    -V, --version                    Print version information
+    -w, --word <단어>                토시를 적용하고 싶은 단어
+```
+
 ## 코드 작성에서 유의할 점
 
 코딩 스타일을 맞추기 위해서 코드를 올리기 전에 다음 명령어를 이용하여 코드를 정리하여 올립니다.
