@@ -17,7 +17,7 @@
 
 ```rust
 cargo run -- --word 테스트  --tossi 은
-cargo run -- --word 테스트  --tossi 은 -o true
+cargo run -- --word 테스트  --tossi 은 -o
 ```
 
 구체적인 사용법 보기
@@ -45,8 +45,7 @@ OPTIONS:
 ```rust
 target/debug/tossi -h                
 target/debug/tossi -t 을 -w 나뭇가지 
-target/debug/tossi -t 을 -w 나뭇가지 -o true
-target/debug/tossi -t 을 -w 나뭇가지 -o false
+target/debug/tossi -t 을 -w 나뭇가지 -o
 ```
 
 구체적인 사용법 보기

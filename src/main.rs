@@ -17,7 +17,7 @@ struct Args {
     tossi: String,
 
     /// 반환 값에 사용자가 입력한 단어 적용 유무
-    #[clap(short, long, action, value_name = "true 또는 false")]
+    #[clap(short, long, action = clap::ArgAction::SetTrue)]
     only_tossi: Option<bool>,
 }
 
