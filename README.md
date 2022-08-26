@@ -46,6 +46,7 @@ OPTIONS:
 target/debug/tossi -h                
 target/debug/tossi -t 을 -w 나뭇가지 
 target/debug/tossi -t 을 -w 나뭇가지 -o true
+target/debug/tossi -t 을 -w 나뭇가지 -o false
 ```
 
 구체적인 사용법 보기
