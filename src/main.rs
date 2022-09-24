@@ -3,7 +3,8 @@ use clap::Parser;
 use library::pick;
 use library::postfix;
 
-/// Tossi(토시)는 사용자가 입력한 단어와 토시를 입력하렸을 때,
+///
+/// Tossi(토시)는 사용자가 입력한 단어와 토시를 입력하였을 때,
 /// 입력한 토시를 입력한 단어에 적절하게 변환해주는 프로그램입니다.
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
