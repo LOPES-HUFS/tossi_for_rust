@@ -66,6 +66,32 @@ OPTIONS:
     -w, --word <단어>                토시를 적용하고 싶은 단어
 ```
 
+### 이 프로젝트를 빌드하기
+
+이 프로젝트를 빌드하기 위해서는 다음 명령어를 실행하면 됩니다.
+
+```console
+cargo build --release
+```
+
+위의 명령어를 통해 빌드했으면 `tossi_for_rust/target/release` 폴더에 `tossi`이라는 이름으로 실행 파일이 만들어졌을 것이다. 의 폴더로 이동한 다음 다음과 같이 실행하시면 됩니다. 참고로 이 파일을 다른 폴더에 이동해도 적절하게 작동합니다.
+
+```console
+➜ ./tossi -h
+tossi 0.1.0
+Tossi(토시)는 사용자가 입력한 단어와 토시를 입력하였을 때, 입력한 토시를 입력한 단어에 적절하게 변환해주는 프로그램입니다
+
+USAGE:
+    tossi [OPTIONS] --word <단어> --tossi <토시>
+
+OPTIONS:
+    -h, --help            Print help information
+    -o, --only-tossi      반환 값에 사용자가 입력한 단어 적용 유무
+    -t, --tossi <토시>    입력한 단어에 적용할 토시
+    -V, --version         Print version information
+    -w, --word <단어>     토시를 적용하고 싶은 단어
+```
+
 ## 코드 작성에서 유의할 점
 
 코딩 스타일을 맞추기 위해서 코드를 올리기 전에 다음 명령어를 이용하여 코드를 정리하여 올립니다.
