@@ -27,7 +27,7 @@ pub fn verifiers(word: &str, tossi: &str) {
 }
 
 // 올바른 토씨를 입력했는지 확인해주는 함수
-fn verifier_tossi(tossi: &str) -> Result<(), &str> {
+pub fn verifier_tossi(tossi: &str) -> Result<(), &str> {
     let mut status = 0;
     for check in TOSSI_LIST.iter() {
         if check == &tossi {
@@ -43,7 +43,7 @@ fn verifier_tossi(tossi: &str) -> Result<(), &str> {
 }
 
 // 파라미터롤 받는 단어를 제한 기준 함수
-fn limit_word_len(word: &str) -> Result<(), &str> {
+pub fn limit_word_len(word: &str) -> Result<(), &str> {
     let limitation = 50;
     if word.chars().count() <= limitation {
         return Ok(());
