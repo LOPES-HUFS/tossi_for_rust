@@ -1,6 +1,13 @@
 //! # 올바른 파라미터로 주어졌는지 확인하는 모듈
-//! ## 현재 취급하는 tossi: 은/는, 이/가, 로/으로, 다/이다
+//! 이 모듈은 입력된 단어와 토시가 적절한 것들인지 검사하는 모듈이다.
+//! 현재 이 프로젝트에서 취급하는 토시(tossi)는 다음과 같다.
 //!
+//! - 은/는
+//! - 이/가
+//! - 로/으로
+//! - 다/이다
+//!
+//! 최종 함수는 `verifiers()`이다.
 
 const TOSSI_LIST: [&str; 35] = [
     "은", "는", "이", "가", "이다", "다", "으로", "로", "의", "도", "께", "에", "만", "뿐", "보다",
@@ -54,6 +61,18 @@ fn _limit_word_len() {
     assert_eq!(Ok(()), limit_word_len(temp));
 
     let temp = "10000000000000000000000000000000000000000000000000000";
+    assert_eq!(
+        Err("The length has been exceeded. Set the word length to less than 50."),
+        limit_word_len(temp)
+    );
+
+    let temp = "테트리스1테트리스2테트리스3테트리스4테트리스5테트리스6테트리스7테트리스8테트리스9테트리스10";
+    assert_eq!(
+        Err("The length has been exceeded. Set the word length to less than 50."),
+        limit_word_len(temp)
+    );
+
+    let temp = "1테트리스2테트리스3테트리스4테트리스5테트리스6테트리스7테트리스8테트리스9테트리스10테트리스";
     assert_eq!(
         Err("The length has been exceeded. Set the word length to less than 50."),
         limit_word_len(temp)
