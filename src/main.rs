@@ -2,6 +2,7 @@ use clap::Parser;
 
 use library::pick;
 use library::postfix;
+use library::verifiers;
 
 ///
 /// Tossi(토시)는 사용자가 입력한 단어와 토시를 입력하였을 때,
@@ -26,10 +27,24 @@ fn main() {
     let args = Args::parse();
     // 아래 값을 `Some(true)`으로 설정해야 이 `only_tossi`을 넣지 않더라고
     // `false`라고 인식하여 단어와 프로그램이 찾는 적절한 토시를 합쳐서 출력하게 된다.
+    // if args.only_tossi == Some(true) {
+    //     println!("{}", pick(&args.word, &args.tossi));
+    // } else {
+    //     println!("{}", postfix(&args.word, &args.tossi));
+    // }
+    let temp_verifier = verifiers(&args.word, &args.tossi);
     if args.only_tossi == Some(true) {
-        println!("{}", pick(&args.word, &args.tossi));
+        if temp_verifier == Ok(()) {
+            println!("{}", pick(&args.word, &args.tossi));
+        } else {
+            println!("{:?}", temp_verifier);
+        }
     } else {
-        println!("{}", postfix(&args.word, &args.tossi));
+        if temp_verifier == Ok(()) {
+            println!("{}", postfix(&args.word, &args.tossi));
+        } else {
+            println!("{:?}", temp_verifier);
+        }
     }
 
     // 테스트
