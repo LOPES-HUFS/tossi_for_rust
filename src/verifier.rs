@@ -15,16 +15,16 @@ const TOSSI_LIST: [&str; 35] = [
     "(으)로", "은(는)", "(는)은", "(이)다", "(을)를", "(를)을", "(이)가", "(가)이",
 ];
 
-pub fn verifiers(word: &str, tossi: &str) {
-    match verifier_tossi(tossi) {
-        Ok(_) => (),
-        Err(e) => panic!("{}", e),
-    }
-    match limit_word_len(word) {
-        Ok(_) => (),
-        Err(e) => panic!("{}", e),
-    }
-}
+// pub fn verifiers(word: &str, tossi: &str) {
+//     match verifier_tossi(tossi) {
+//         Ok(_) => (),
+//         Err(e) => panic!("{}", e),
+//     }
+//     match limit_word_len(word) {
+//         Ok(_) => (),
+//         Err(e) => panic!("{}", e),
+//     }
+// }
 
 // 올바른 토씨를 입력했는지 확인해주는 함수
 pub fn verifier_tossi(tossi: &str) -> Result<(), &str> {
