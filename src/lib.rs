@@ -7,6 +7,23 @@ mod verifier;
 
 use crate::particle::*;
 use identifier::{Tossi, TossiKind};
+use verifier::{limit_word_len, verifier_tossi};
+
+/// ### 한글인지 또는 숫자인지 파악하는 함수
+/// 마지막 글자가 한글 또는 숫자인지 아닌지 파악한다.
+/// 반환은 `Tuple` 형으로 하는데
+/// - 첫 번째 값은 한글인지 아닌지를
+/// - 두 번째 깂은 숫자인지 아닌지를
+/// 반환한다.
+pub fn is_hangeul_or_number(word: String) -> (bool, bool) {
+    let char_vec: Vec<char> = word.chars().collect();
+    let last_char = char_vec[char_vec.len() - 1];
+    // println!("마지막 글자는: {:?}", last_char);
+    return (
+        hangeul::is_hangeul(last_char),
+        ('0' <= last_char && last_char <= '9'),
+    );
+}
 
 // hangeul 모듈
 pub fn join_phonemes(word: [char; 3]) -> char {
@@ -50,7 +67,6 @@ pub fn change_int_char(num: char) -> char {
 
 fn postfix_raw(word: &str, tossi: &str) -> (String, String) {
     //파라미터에 올바른 규격의 값이 들어왔는지 확인하기
-    verifiers(word, tossi);
     let temp = Tossi::new(tossi);
     let result = match temp.kind {
         TossiKind::Neun => neun::change(&word),
@@ -77,7 +93,26 @@ pub fn pick(word: &str, tossi: &str) -> String {
     return temp.1;
 }
 
-// verifier 모듈
-pub fn verifiers(word: &str, tossi: &str) {
-    verifier::verifiers(word, tossi)
+/// 변환하기 전에 입력된 것들이 변환가능한 것인지 검사하는 함수
+/// 위에서부터 아래 조건 문을 순서대로 살펴 보겠다.
+/// 
+/// 1. 단어는 마지막 글자가 한글이나 숫자이면 된다.
+/// 2. 토시는 한글이면 된다.
+/// 3. 변환할 수 있는 토시인지 아닌지 파악한다.
+/// 4. 단어의 길이가 50자를 넘으면 처리하지 않도록 처리한다.
+/// 
+/// 이 4가지를 만족하면 본 작업인 글자에 맞게 토시를 변환하게 된다.
+pub fn verifiers<'a>(word: &'a str, tossi: &'a str) -> Result<(), &'a str> {
+    if is_hangeul_or_number(word.to_string()) == (false, false) {
+        return Err("입력하신 단어가 한글도 아니고 숫자도 아닙니다.");
+    } else if is_hangeul_or_number(tossi.to_string()).0 == false {
+        return Err("입력하신 토시가 한글이 아닙니다.");
+    } else if verifier_tossi(tossi) != Ok(()) {
+        return verifier_tossi(tossi);
+    } else if limit_word_len(word) != Ok(()) {
+        // let temp_count = word.chars().count();
+        return limit_word_len(word);
+    } else {
+        return Ok(());
+    }
 }
