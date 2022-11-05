@@ -67,7 +67,6 @@ pub fn verifiers<'a>(word: &'a str, tossi: &'a str) -> Result<(), &'a str> {
     }
 }
 
-
 // 올바른 토씨를 입력했는지 확인해주는 함수
 fn verifier_tossi(tossi: &str) -> Result<(), &str> {
     let mut status = 0;
