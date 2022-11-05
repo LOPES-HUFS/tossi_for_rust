@@ -7,23 +7,6 @@ mod verifier;
 
 use crate::particle::*;
 use identifier::{Tossi, TossiKind};
-use verifier::{limit_word_len, verifier_tossi};
-
-/// ### 한글인지 또는 숫자인지 파악하는 함수
-/// 마지막 글자가 한글 또는 숫자인지 아닌지 파악한다.
-/// 반환은 `Tuple` 형으로 하는데
-/// - 첫 번째 값은 한글인지 아닌지를
-/// - 두 번째 깂은 숫자인지 아닌지를
-/// 반환한다.
-pub fn is_hangeul_or_number(word: String) -> (bool, bool) {
-    let char_vec: Vec<char> = word.chars().collect();
-    let last_char = char_vec[char_vec.len() - 1];
-    // println!("마지막 글자는: {:?}", last_char);
-    return (
-        hangeul::is_hangeul(last_char),
-        ('0' <= last_char && last_char <= '9'),
-    );
-}
 
 // hangeul 모듈
 // tests/hangeul.rs 에서 test 한다.
@@ -109,15 +92,5 @@ pub fn pick(word: &str, tossi: &str) -> String {
 ///
 /// 이 4가지를 만족하면 본 작업인 글자에 맞게 토시를 변환하게 된다.
 pub fn verifiers<'a>(word: &'a str, tossi: &'a str) -> Result<(), &'a str> {
-    if is_hangeul_or_number(word.to_string()) == (false, false) {
-        return Err("입력하신 단어가 한글도 아니고 숫자도 아닙니다.");
-    } else if is_hangeul_or_number(tossi.to_string()).0 == false {
-        return Err("입력하신 토시가 한글이 아닙니다.");
-    } else if verifier_tossi(tossi) != Ok(()) {
-        return verifier_tossi(tossi);
-    } else if limit_word_len(word) != Ok(()) {
-        return limit_word_len(word);
-    } else {
-        return Ok(());
-    }
+    verifier::verifiers(word, tossi)
 }
