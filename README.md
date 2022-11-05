@@ -43,15 +43,15 @@ OPTIONS:
 ### `cargo build`로 컴파일한 다음 사용하는 법
 
 ```rust
-target/debug/tossi -h                
-target/debug/tossi -t 을 -w 나뭇가지 
+target/debug/tossi -h
+target/debug/tossi -t 을 -w 나뭇가지
 target/debug/tossi -t 을 -w 나뭇가지 -o
 ```
 
 구체적인 사용법 보기
 
 ```rust
-➜ target/debug/tossi -h                
+➜ target/debug/tossi -h
 tossi 0.1.0
 Tossi(토시)는 사용자가 입력한 단어와 토시를 입력하렸을 때, 입력한 단어에 적합한
 
