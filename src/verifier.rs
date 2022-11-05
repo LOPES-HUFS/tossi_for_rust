@@ -34,7 +34,7 @@ const TOSSI_LIST: [&str; 35] = [
 /// - 첫 번째 값은 한글인지 아닌지를
 /// - 두 번째 깂은 숫자인지 아닌지를
 /// 반환한다.
-pub fn is_hangeul_or_number(word: String) -> (bool, bool) {
+fn is_hangeul_or_number(word: String) -> (bool, bool) {
     let char_vec: Vec<char> = word.chars().collect();
     let last_char = char_vec[char_vec.len() - 1];
     // println!("마지막 글자는: {:?}", last_char);
